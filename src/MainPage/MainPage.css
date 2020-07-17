@@ -1,0 +1,24 @@
+.login-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12%;
+}
+
+.login-link>a {
+    width: 70px;
+    height: 24px;
+    text-align: center;
+}
+
+.tutor-table {
+    display: flex;
+    justify-content: center;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

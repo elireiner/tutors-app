@@ -1,0 +1,17 @@
+.sign-up {
+    display: flex;
+    justify-content: center;
+}
+
+.toggle {
+    display: flex;
+    justify-content: center;
+}
+
+.toggle > a {
+   height: 1.5em;
+}
+
+.current-form, .link {
+    padding: 3px;
+}

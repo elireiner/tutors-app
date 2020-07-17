@@ -1,0 +1,6 @@
+li {
+   display: flex;
+}
+.tutor > p {
+    padding: 3px;
+}
