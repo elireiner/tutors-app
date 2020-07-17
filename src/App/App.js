@@ -1,11 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import TutorTable from '../MainPage/MainPage'
+import MainPage from '../MainPage/MainPage'
 import StudentSignUp from '../Forms/StudentSignUp/StudentSignUp'
 import TutorSignUp from '../Forms/TutorSignUp/TutorSignUp'
 import StudentLogIn from '../Forms/StudentLogIn/StudentLogIn'
 import TutorLogIn from '../Forms/TutorLogIn/TutorLogIn'
-import Nav from '../Nav/Nav'
 import './App.css'
 
 
@@ -16,7 +15,7 @@ export default class App extends React.Component {
             <Route
                 exact
                 path='/'
-                component={TutorTable}
+                component={MainPage}
             />
         )
     }
@@ -29,7 +28,7 @@ export default class App extends React.Component {
                     component={StudentSignUp}
                 />
                 <Route
-                    path='/students/signin'
+                    path='/students/login'
                     component={StudentLogIn}
                 />
                 <Route
@@ -37,7 +36,7 @@ export default class App extends React.Component {
                     component={TutorSignUp}
                 />
                 <Route
-                    path='/tutors/signin'
+                    path='/tutors/login'
                     component={TutorLogIn}
                 />
             </>
@@ -49,9 +48,6 @@ export default class App extends React.Component {
         return (
             <>
                 <div className="App">
-                    <nav>
-                        {<Nav />}
-                    </nav>
                     <section>
                         {this.handleMainRouter()}
                         {this.handleFormsRouter()}
