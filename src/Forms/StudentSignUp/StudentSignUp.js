@@ -34,7 +34,7 @@ export default class StudentSignUp extends React.Component {
                         </div>
                         <div className="form-field">
                             <label>Password
-                               <input type="password" minLength="8" name="student_password" id="password" required />
+                               <input type="password" minLength="8" name="student_password" id="password" autoComplete="on" required />
                             </label>
 
                         </div>

@@ -9,25 +9,25 @@ export default class StudentLogIn extends React.Component {
 
         return (
             <>
-                <section class="welcome">
+                <section className="welcome">
                     <p>Welcome Back</p>
                 </section>
-                <section class="log-in">
-                    <form action="" method="post" class="form">
-                        <div class="form-field">
-                            <label for="email">Email
+                <section className="log-in">
+                    <form action="" method="post" className="form">
+                        <div className="form-field">
+                            <label htmlFor="email">Email
                                 <input type="email" name="student_email" id="email" required></input>
                             </label>
 
                         </div>
-                        <div class="form-field">
-                            <label forHtml="password">Password
-                                <input type="password" minlength="8" name="student_password" id="password" required />
+                        <div className="form-field">
+                            <label htmlFor="password">Password
+                                <input type="password" minLength="8" name="student_password" id="password" autoComplete="on" required />
                             </label>
 
                         </div>
 
-                        <div class="form-field">
+                        <div className="form-field">
                             <input type="submit" value="Log in" />
                         </div>
                     </form>
