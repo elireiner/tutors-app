@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Tutor from '../Tutor/Tutor'
 import Filters from '../Filters/Filters'
+import Nav from '../Nav/Nav'
 import './MainPage.css'
 
 let tutorsObject = [
@@ -23,16 +24,25 @@ export default class MainPage extends React.Component {
 
         return (
             <>
-                <section>
-                    <Link to='/students/signin'>Sign In</Link>
-                </section>
-                <section>
-                    {<Filters />}
-                </section>
+                <nav>
+                    {<Nav />}
+                </nav>
 
-                <section>
-                    {tutor}
+                <section className="login-link">
+                    <Link to='/students/login'>Sign In</Link>
                 </section>
+                <div>
+                    <section className="tutor-table">
+                        {<Filters />}
+                    </section>
+
+                    <section>
+                        <ul>
+                            {tutor}
+                        </ul>
+                    </section>
+                </div>
+
 
             </>
         )

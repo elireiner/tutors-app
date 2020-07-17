@@ -1,5 +1,6 @@
 import React from 'react'
-
+import FormNav from '../../FormNav/FormNav'
+import { Link } from 'react-router-dom'
 import './StudentSignUp.css'
 
 
@@ -9,9 +10,17 @@ export default class StudentSignUp extends React.Component {
 
         return (
             <>
+                <nav>
+                    {<FormNav />}
+                </nav>
                 <section className="welcome">
                     <p>Welcome</p>
                 </section>
+                <div className="toggle">
+                <p className="current-form">signup</p>
+                {'/'}
+                <Link className="link" to='/students/login'>login</Link>
+                </div>
                 <section className="sign-up">
                     <form action="" method="post" className="form">
                         <div className="form-field">

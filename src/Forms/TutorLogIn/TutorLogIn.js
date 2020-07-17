@@ -1,4 +1,6 @@
 import React from 'react'
+import FormNav from '../../FormNav/FormNav'
+import { Link } from 'react-router-dom'
 import './TutorLogIn.css'
 
 
@@ -8,10 +10,17 @@ export default class TutorLogIn extends React.Component {
 
         return (
             <>
-
+                <nav>
+                    {<FormNav />}
+                </nav>
                 <section className="welcome">
                     <p>Welcome Back</p>
                 </section>
+                <div className="toggle">
+                <p className="current-form">login</p>
+                {'/'}
+                <Link className="link" to='/tutors/signup'>signup</Link>
+                </div>
                 <section className="log-in">
                     <form action="" method="post" className="form">
                         <div className="form-field">
