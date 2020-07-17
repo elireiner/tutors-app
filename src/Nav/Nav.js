@@ -8,8 +8,9 @@ export default class Nav extends React.Component {
 
         return (
             <>
+        <Link to='/'>Tutors App</Link>
         <Link to='/students/signup'>Sign Up</Link>
-        <Link to='/tutors/signup'>Tutors</Link>
+  
             </>
         )
     }
