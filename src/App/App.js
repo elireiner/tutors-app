@@ -5,10 +5,37 @@ import StudentSignUp from '../Forms/StudentSignUp/StudentSignUp'
 import TutorSignUp from '../Forms/TutorSignUp/TutorSignUp'
 import StudentLogIn from '../Forms/StudentLogIn/StudentLogIn'
 import TutorLogIn from '../Forms/TutorLogIn/TutorLogIn'
+import ApiContext from '../ApiContext'
+import config from '../config'
 import './App.css'
 
 
 export default class App extends React.Component {
+    state = {
+        users: []
+    };
+
+    componentDidMount() {
+        console.log(config.API_KEY)
+        fetch(`${config.API_ENDPOINT}`, {
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
+            }
+        })
+            .then(response => {
+                if (!response.ok)
+                    return response.json().then(e => Promise.reject(e))
+                return response.json()
+            })
+            .then(responseJson => {
+                this.setState({ responseJson })
+            })
+            .catch(error => {
+                console.error({ error })
+            })
+    }
 
     handleMainRouter() {
         return (
@@ -44,7 +71,7 @@ export default class App extends React.Component {
     }
 
     render() {
-
+        console.log(this.state)
         return (
             <>
                 <div className="App">
