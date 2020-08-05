@@ -16,7 +16,6 @@ export default class App extends React.Component {
     };
 
     componentDidMount() {
-        console.log(config.API_KEY)
         fetch(`${config.API_ENDPOINT}`, {
             method: 'GET',
             headers: {
