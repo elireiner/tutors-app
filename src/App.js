@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import MainPage from '../MainPage/MainPage'
-import StudentSignUp from '../Forms/StudentSignUp/StudentSignUp'
-import TutorSignUp from '../Forms/TutorSignUp/TutorSignUp'
-import StudentLogIn from '../Forms/StudentLogIn/StudentLogIn'
-import TutorLogIn from '../Forms/TutorLogIn/TutorLogIn'
-import ApiContext from '../ApiContext'
-import config from '../config'
+import MainPage from './MainPage/MainPage'
+import StudentSignUp from './Forms/StudentSignUp/StudentSignUp'
+import TutorSignUp from './Forms/TutorSignUp/TutorSignUp'
+import StudentLogIn from './Forms/StudentLogIn/StudentLogIn'
+import TutorLogIn from './Forms/TutorLogIn/TutorLogIn'
+import ApiContext from './ApiContext'
+import config from './config'
 import './App.css'
 
 
@@ -29,7 +29,7 @@ export default class App extends React.Component {
                 return response.json()
             })
             .then(responseJson => {
-                this.setState({ responseJson })
+                this.setState({ users: responseJson })
             })
             .catch(error => {
                 console.error({ error })
@@ -70,7 +70,7 @@ export default class App extends React.Component {
     }
 
     render() {
-        console.log(this.state)
+        console.log(this.state.users)
         return (
             <>
                 <div className="App">
