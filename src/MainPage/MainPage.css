@@ -1,8 +1,23 @@
+.navbar {
+    height: 13vh;
+    background-color: #8E7363;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+}
+
 .login-link {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 12%;
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+    text-decoration: none;
 }
 
 .login-link>a {
@@ -12,13 +27,14 @@
 }
 
 .tutor-table {
-    display: flex;
-    justify-content: center;
+    height: 15vh;
 }
 
-ul {
+.tutors-list {
     list-style-type: none;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }

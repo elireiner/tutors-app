@@ -13,7 +13,7 @@ let tutorsObject = [
 export default class MainPage extends React.Component {
 
     render() {
-        let tutor = tutorsObject.map(tutor => {
+        let tutors = tutorsObject.map(tutor => {
             return <Tutor
                 key={tutor.id}
                 name={tutor.name}
@@ -24,21 +24,17 @@ export default class MainPage extends React.Component {
 
         return (
             <>
-                <nav>
+                <nav className="navbar">
                     {<Nav />}
                 </nav>
-
-                <section className="login-link">
-                    <Link to='/students/login'>Sign In</Link>
-                </section>
                 <div>
-                    <section className="tutor-table">
+                    <section className="filter-section">
                         {<Filters />}
                     </section>
 
                     <section>
-                        <ul>
-                            {tutor}
+                        <ul className="tutors-list">
+                            {tutors}
                         </ul>
                     </section>
                 </div>

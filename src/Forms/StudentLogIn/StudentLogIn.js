@@ -10,7 +10,7 @@ export default class StudentLogIn extends React.Component {
 
         return (
             <>
-                <nav>
+                   <nav className="navbar">
                     {<FormNav />}
                 </nav>
 

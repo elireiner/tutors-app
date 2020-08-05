@@ -10,7 +10,7 @@ export default class TutorSignUp extends React.Component {
 
         return (
             <>
-                <nav>
+                <nav className="navbar">
                     {<FormNav />}
                 </nav>
                 <section className="welcome">

@@ -6,9 +6,9 @@ export default class Tutor extends React.Component {
         const { name, price, subject } = this.props
         return (
             <li className="tutor">
-                <p>{name}</p>
-                <p>{price}</p>
-                <p>{subject}</p>
+                <p className="tutors-item tutor-name">{name}</p>
+                <p className="tutors-item tutor-subject">{subject}</p>
+                <p className="tutors-item tutor-price">{price}</p>
             </li>
         )
     }
