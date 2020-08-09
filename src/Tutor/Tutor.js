@@ -1,15 +1,26 @@
 import React from 'react'
+import TutorsContext from '../TutorsContext';
+import PropTypes from 'prop-types';
 import './Tutor.css'
 
 export default class Tutor extends React.Component {
+    static defaultProps = {
+        tutors: []
+    };
+
     render() {
-        const { name, price, subject } = this.props
+
         return (
-            <li className="tutor">
-                <p className="tutors-item tutor-name">{name}</p>
-                <p className="tutors-item tutor-subject">{subject}</p>
-                <p className="tutors-item tutor-price">{price}</p>
-            </li>
+            <TutorsContext.Consumer >
+                {(context) => (
+                <li className="tutor">
+                    <p className="tutors-item tutor-name">{this.props.first_name}</p>
+                    <p className="tutors-item tutor-subject">{this.props.subjects[0]}</p>
+                    <p className="tutors-item tutor-price">{this.props.fee}</p>
+                </li>
+                )}
+            </TutorsContext.Consumer>
+
         )
     }
 }
