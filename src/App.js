@@ -5,18 +5,40 @@ import StudentSignUp from './Forms/StudentSignUp/StudentSignUp'
 import TutorSignUp from './Forms/TutorSignUp/TutorSignUp'
 import StudentLogIn from './Forms/StudentLogIn/StudentLogIn'
 import TutorLogIn from './Forms/TutorLogIn/TutorLogIn'
-import ApiContext from './ApiContext'
+import TutorsContext from './TutorsContext'
 import config from './config'
 import './App.css'
 
 
 export default class App extends React.Component {
     state = {
-        users: []
+        users: [],
+        tutors: [],
+        students: [],
+        error: null,
     };
 
+    separate = users => {
+        const tutors = this.state.users.filter(user => user.tutor === true);
+        const students = this.state.users.filter(user => user.student === true)
+        this.setState({
+            tutors,
+            students
+        })
+    }
+
+    setUsers = users => {
+        users.forEach(user => user.rating = parseInt(user.rating))
+        console.log(users)
+        this.setState({
+            users,
+            error: null,
+        })
+    }
+
     componentDidMount() {
-        fetch(`${config.API_ENDPOINT}`, {
+
+        fetch(config.API_ENDPOINT, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -28,60 +50,47 @@ export default class App extends React.Component {
                     return response.json().then(e => Promise.reject(e))
                 return response.json()
             })
-            .then(responseJson => {
-                this.setState({ users: responseJson })
-            })
-            .catch(error => {
-                console.error({ error })
-            })
-    }
-
-    handleMainRouter() {
-        return (
-            <Route
-                exact
-                path='/'
-                component={MainPage}
-            />
-        )
-    }
-
-    handleFormsRouter() {
-        return (
-            <>
-                <Route
-                    path='/students/signup'
-                    component={StudentSignUp}
-                />
-                <Route
-                    path='/students/login'
-                    component={StudentLogIn}
-                />
-                <Route
-                    path='/tutors/signup'
-                    component={TutorSignUp}
-                />
-                <Route
-                    path='/tutors/login'
-                    component={TutorLogIn}
-                />
-            </>
-        )
+            .then(this.setUsers)
+            .then(this.separate)
+            .catch(error => this.setState({ error }))
     }
 
     render() {
-        console.log(this.state.users)
+        const contextValue = {
+            users: this.state.users,
+            tutors: this.state.tutors,
+            students: this.state.students,
+            addUser: this.addUser,
+            updateUser: this.updateUser,
+            deleteNote: this.deleteNote
+        }
         return (
-            <>
-                <div className="App">
-                    <section>
-                        {this.handleMainRouter()}
-                        {this.handleFormsRouter()}
-                    </section>
+            <div className="App">
+                <TutorsContext.Provider value={contextValue}>
+                    <Route
+                        exact
+                        path='/'
+                        component={MainPage}
+                    />
+                    <Route
+                        path='/students/signup'
+                        component={StudentSignUp}
+                    />
+                    <Route
+                        path='/students/login'
+                        component={StudentLogIn}
+                    />
+                    <Route
+                        path='/tutors/signup'
+                        component={TutorSignUp}
+                    />
+                    <Route
+                        path='/tutors/login'
+                        component={TutorLogIn}
+                    />
+                </TutorsContext.Provider>
+            </div>
 
-                </div>
-
-            </>
         )
     }
 }
