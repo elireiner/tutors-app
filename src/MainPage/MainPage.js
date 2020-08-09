@@ -1,32 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import TutorsContext from '../TutorsContext'
 import Tutor from '../Tutor/Tutor'
 import Filters from '../Filters/Filters'
 import Nav from '../Nav/Nav'
 import './MainPage.css'
-
-let tutorsObject = [
-    { id: 1, name: "joe", price: "$49.99", subject: "math" },
-    { id: 2, name: "joe", price: "25.99", subject: "math" }
-]
+import PropTypes from 'prop-types';
 
 export default class MainPage extends React.Component {
+    static defaultProps = {
+        tutors: []
+    };
+
+    static contextType = TutorsContext;
 
     render() {
-        let tutors = tutorsObject.map(tutor => {
-            return <Tutor
-                key={tutor.id}
-                name={tutor.name}
-                price={tutor.price}
-                subject={tutor.subject}
-            />
-        })
-
+        const { tutors } = this.context
         return (
             <>
-                <nav className="navbar">
-                    {<Nav />}
-                </nav>
+                <Nav />
                 <div>
                     <section className="filter-section">
                         {<Filters />}
@@ -34,7 +25,12 @@ export default class MainPage extends React.Component {
 
                     <section>
                         <ul className="tutors-list">
-                            {tutors}
+                            {tutors.map(tutor =>
+                                <Tutor
+                                    key={tutor.id}
+                                    {...tutor}
+                                />
+                            )}
                         </ul>
                     </section>
                 </div>
