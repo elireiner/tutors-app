@@ -1,0 +1,45 @@
+.tutor-sign-up-section{
+    height: 40vh;
+    width: 100%;
+}
+
+.tutor-sign-up-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #9CBABA;
+    height: 35vh;
+    width: 80%;
+    margin: auto;
+    margin-top: 8vh;
+}
+
+.tutor-add-label, .tutor-add-input, .tutor-add-gender, .tutor-add-next-button {
+    font-size: 16px;
+    margin-top: .3vh;
+    width: 80%;
+    margin: auto;
+}
+.tutor-add-input, .tutor-add-gender {
+    padding: 2px 1px;
+    width: 80%;
+}
+.gender-label {
+    display: none;
+}
+
+
+.tutor-add-gender, .tutor-add-next-button, .tutor-add-input-sign-up-button{
+    width: 82%;
+}
+
+.tutor-add-label.subject, .tutor-add-input.subject,
+.tutor-add-label.fee, .tutor-add-input.fee {
+    margin-bottom: 0;
+}
+
+.medium {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+}

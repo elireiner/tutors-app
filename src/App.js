@@ -5,6 +5,7 @@ import StudentSignUp from './Forms/StudentSignUp/StudentSignUp'
 import TutorSignUp from './Forms/TutorSignUp/TutorSignUp'
 import StudentLogIn from './Forms/StudentLogIn/StudentLogIn'
 import TutorLogIn from './Forms/TutorLogIn/TutorLogIn'
+import TutorAddService from './Forms/TutorAddService/TutorAddService'
 import TutorsContext from './TutorsContext'
 import config from './config'
 import './App.css'
@@ -75,6 +76,10 @@ export default class App extends React.Component {
                     <Route
                         path='/students/signup'
                         component={StudentSignUp}
+                    />
+                    <Route
+                        path='/tutors/add-service'
+                        component={TutorAddService}
                     />
                     <Route
                         path='/students/login'
