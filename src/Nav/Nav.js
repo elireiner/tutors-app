@@ -7,11 +7,13 @@ export default class Nav extends React.Component {
     render() {
 
         return (
-            <>
-        <Link to='/'>Tutors App</Link>
-        <Link to='/students/signup'>Sign Up</Link>
-  
-            </>
+            <nav className="navbar">
+                <p>Tutors App</p>
+                <Link className="tutor" to='/tutors/add-service'>Tutor</Link>
+                {
+                    // <Link to='/students/signup'>Sign Up</Link>
+                }
+            </nav>
         )
     }
 }

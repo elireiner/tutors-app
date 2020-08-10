@@ -7,11 +7,12 @@ export default class FormNav extends React.Component {
     render() {
 
         return (
-            <>
-        <Link to='/'>Home</Link>
-        <Link to='/tutors/login'>Tutors</Link>
-  
-            </>
+            <nav className="navbar">
+                <Link className="home" to='/'>Home</Link>
+                {
+                    // <Link to='/tutors/login'>Tutors</Link>
+                }
+            </nav>
         )
     }
 }

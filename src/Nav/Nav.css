@@ -1,0 +1,23 @@
+.navbar {
+    height: 13vh;
+    background-color: #8E7363;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.navbar>p, .navbar>.tutor {
+    background-color: #8E7363;
+    color: white;
+    width: 50%;
+    padding: 2%;
+    margin: 0;
+}
+
+.navbar>p {
+    text-align: start;
+}
+
+.navbar>.tutor {
+    text-align: end;
+}
