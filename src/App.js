@@ -65,13 +65,15 @@ export default class App extends React.Component {
             updateUser: this.updateUser,
             deleteNote: this.deleteNote
         }
+
         return (
             <div className="App">
                 <TutorsContext.Provider value={contextValue}>
                     <Route
                         exact
                         path='/'
-                        component={MainPage}
+                        render={(props) => <MainPage tutors={this.state.tutors} {...props} />}
+        
                     />
                     <Route
                         path='/students/signup'
