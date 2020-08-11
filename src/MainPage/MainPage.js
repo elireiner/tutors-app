@@ -7,25 +7,54 @@ import './MainPage.css'
 import PropTypes from 'prop-types';
 
 export default class MainPage extends React.Component {
-    static defaultProps = {
-        tutors: []
-    };
+    //fix organize default props and constructor
 
-    static contextType = TutorsContext;
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            tutors: this.props.tutors,
+            fee: "all",
+            medium: "all",
+            gender: "all"
+        };
+    }
+
+    handleGenderChange = (e) => {
+        this.setState({ gender: e.target.value });
+    }
+
+    handleMediumChange = (e) => {
+
+    }
+
+    handlePriceChange = (e) => {
+
+    }
+
 
     render() {
-        const { tutors } = this.context
+
+        console.log(this.props.tutors)
+        const props = {
+            handleGenderChange: this.handleGenderChange,
+            handleMediumChange: this.handleMediumChange,
+            handlePriceChange: this.handlePriceChange
+        }
+
         return (
             <>
                 <Nav />
                 <div>
                     <section className="filter-section">
-                        {<Filters />}
+                        {<Filters
+                            {...props}
+                        />}
                     </section>
 
                     <section>
                         <ul className="tutors-list">
-                            {tutors.map(tutor =>
+                            {this.state.tutors.map(tutor =>
                                 <Tutor
                                     key={tutor.id}
                                     {...tutor}
