@@ -45,7 +45,11 @@ export default class MainPage extends React.Component {
         return (
             <>
                 <Nav />
+                <div className="beta">
+                    <span>Beta; please bear with us</span>
+                </div>
                 <div>
+
                     <section className="filter-section">
                         {<Filters
                             {...props}
@@ -53,6 +57,7 @@ export default class MainPage extends React.Component {
                     </section>
 
                     <section>
+                  
                         <ul className="tutors-list">
                             {this.state.tutors.map(tutor =>
                                 <Tutor
