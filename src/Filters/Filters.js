@@ -11,25 +11,25 @@ export default class Filters extends React.Component {
                 <h2 className="filters-header">Filters</h2>
                 <div className="filters">
                     <label>
-                        <select name="tutor_gender" id="gender-select">
-                            <option value="">Location</option>
-                            <option value="Male">Brooklyn</option>
-                            <option value="Female">Queens</option>
+                        <select name="tutor_gender" id="gender-select" onChange={this.props.handleGenderChange}>
+                            <option value="all">Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
                     </label>
 
                     <label>
                         <select name="tutor_gender" id="gender-select">
-                            <option value="">Medium</option>
-                            <option value="Male">Online</option>
-                            <option value="Female">In person</option>
+                            <option value="all">Medium</option>
+                            <option value="online">Online</option>
+                            <option value="person">In person</option>
                         </select>
                     </label>
 
                     <form action="" method="post" className="form">
                         <label>
                             <select name="tutor_price" id="price-select">
-                                <option value="">Fee</option>
+                                <option value="all">Fee</option>
                                 <option value="25">{"<"} $25</option>
                                 <option value="50">{"<"} $50</option>
                             </select>
