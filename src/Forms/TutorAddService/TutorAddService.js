@@ -1,5 +1,6 @@
 import React from 'react'
 import FormNav from '../../FormNav/FormNav'
+import config from '../../config'
 import './TutorAddService.css'
 
 export default class TutorAddService extends React.Component {
@@ -8,9 +9,52 @@ export default class TutorAddService extends React.Component {
 
 
         this.state = {
-            nextClicked: false
+
+            firstName: '',
+            lastName: '',
+            email: '',
+            userPassword: '',
+            gender: '',
+            student: false,
+            tutor: true,
+            fee: 0,
+            inPerson: false,
+            onlineMedium: false,
+            tutorSubject: '',
+
+            nextClicked: false,
+            showStudentChoice: false
         };
         //   this.handleNextClick = this.delta.handleNextClick(this);
+    }
+
+    handleFormChange = (event) => {
+        const target = event.target;
+
+        if (target.name === "inPerson" || target.name === "onlineMedium") {
+
+            const value = !this.state[target.value]
+            console.log(value)
+            const name = target.name;
+            console.log({ [name]: value })
+
+
+            this.setState({
+                [name]: value
+            });
+        }
+
+        else {
+            const value = target.value;
+            const name = target.name;
+
+            this.setState({
+                [name]: value
+            })
+            console.log(this.state.gender)
+
+
+        }
     }
 
     handleNextClick = () => {
@@ -18,6 +62,48 @@ export default class TutorAddService extends React.Component {
             nextClicked: true
         })
     }
+
+    handleSubmit = e => {
+
+        e.preventDefault()
+
+        const user = {
+            first_name: this.state.firstName,
+            last_name: this.state.lastName,
+            email: this.state.email,
+            user_password: this.state.userPassword,
+            gender: this.state.gender,
+            student: this.state.student,
+            tutor: this.state.tutor,
+            fee: this.state.fee,
+            in_person: this.state.inPerson,
+            online_medium: this.state.onlineMedium,
+            subjects: this.state.inPerson
+        }
+
+        fetch(config.API_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
+            },
+            body: JSON.stringify(user),
+        })
+            .then(res => {
+                if (!res.ok)
+                    return res.json().then(e => Promise.reject(e))
+                return res.json()
+            })
+            .then(user => {
+                //fix add the below method
+                //this.context.addUser(user)
+            })
+            .catch(error => {
+                console.error({ error })
+            })
+    }
+
+
     render() {
 
         return (
@@ -36,24 +122,68 @@ export default class TutorAddService extends React.Component {
                 }
                 <section className="tutor-sign-up-section">
 
-                    <form action="" method="post" className="tutor-sign-up-form">
+                    <form
+                        action=""
+                        method="post"
+                        className="tutor-sign-up-form"
+                        onSubmit={this.handleSubmit}
+                    >
+
                         {
                             this.state.nextClicked ?
 
                                 <div></div>
                                 :
                                 <>
-                                    <label className="tutor-add-label" htmlFor="firstName">First name</label>
-                                    <input className="tutor-add-input" type="text" name="tutorFirstName" id="firstName" required />
+                                    <label className="tutor-add-label" htmlFor="firstName">
+                                        First name
+                                        <input
+                                            className="tutor-add-input"
+                                            type="text"
+                                            name="firstName"
+                                            value={this.state.firstName}
+                                            onChange={this.handleFormChange}
+                                        />
+                                    </label>
 
-                                    <label className="tutor-add-label" htmlFor="lastName">Last name</label>
-                                    <input className="tutor-add-input" type="text" name="tutorLastName" id="last-name" required />
+                                    <label className="tutor-add-label">
+                                        Last name
+                                        <input
+                                            className="tutor-add-input"
+                                            type="text"
+                                            name="lastName"
+                                            required
+                                            value={this.state.lastName}
+                                            onChange={this.handleFormChange}
+                                        />
+                                    </label>
 
-                                    <label className="tutor-add-label" htmlFor="email">Email</label>
-                                    <input className="tutor-add-input" type="email" name="tutor_email" id="email" required />
+                                    <label className="tutor-add-label" htmlFor="email">
+                                        Email
+                                           <input
+                                            className="tutor-add-input"
+                                            type="email"
+                                            name="email"
+                                            required
+                                            value={this.state.email}
+                                            onChange={this.handleFormChange}
+                                        />
+                                    </label>
 
-                                    <label className="tutor-add-label" htmlFor="password">Password</label>
-                                    <input className="tutor-add-input" type="password" minLength="8" name="tutor_password" id="password" autoComplete="on" required />
+                                    <label className="tutor-add-label">
+                                        Password
+                                           <input
+                                            className="tutor-add-input"
+                                            type="password"
+                                            minLength="8"
+                                            name="userPassword"
+                                            autoComplete="on"
+                                            required
+                                            value={this.state.userPassword}
+                                            onChange={this.handleFormChange}
+                                        />
+                                    </label>
+
 
                                     <button
                                         className="tutor-add-next-button"
@@ -68,26 +198,68 @@ export default class TutorAddService extends React.Component {
                         {
                             this.state.nextClicked ?
                                 <>
-                                    <label className="tutor-add-label subject" htmlFor="subject">Subject</label>
-                                    <input className="tutor-add-input subject" type="text" minLength="8" name="tutor_subject" id="subject" required />
+                                    <label className="tutor-add-label subject">
+                                        Subject
+                                        <input
+                                            className="tutor-add-input subject"
+                                            type="text"
+                                            minLength="2"
+                                            name="tutorSubject"
+                                            required
+                                            value={this.state.tutorSubject}
+                                            onChange={this.handleFormChange}
+                                        />
+                                    </label>
 
-                                    <label className="tutor-add-label fee" htmlFor="fee">Fee</label>
-                                    <input className="tutor-add-input fee" type="number" min="1" step="any" name="tutor_fee" id="fee" required />
 
-                                    <label className="tutor-add-label gender-label" htmlFor="gender-select"></label>
-                                    <select className="tutor-add-gender" name="tutor_gender" id="gender-select">
-                                        <option value="">Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
+                                    <label className="tutor-add-label fee">
+                                        Fee
+                                        <input
+                                            className="tutor-add-input fee"
+                                            type="number"
+                                            min="1"
+                                            step="any"
+                                            name="fee"
+                                            required
+                                            value={this.state.fee}
+                                            onChange={this.handleFormChange}
+                                        />
+                                    </label>
+
+                                    <label className="tutor-add-label gender-label">
+                                        <select
+                                            className="tutor-add-gender"
+                                            name="gender"
+                                            value={this.state.value}
+                                            onChange={this.handleFormChange}
+                                        >
+                                            <option value="gender">Gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </label>
+
 
                                     <div className="medium">
+                                        <input
+                                            type="radio"
+                                            id="online"
+                                            name="onlineMedium"
+                                            value="onlineMedium"
+                                            checked={this.state.onlineMedium}
+                                            onChange={this.handleFormChange}
+                                        />
+                                        <label htmlFor="online">online</label>
 
-                                        <input type="radio" id="online" name="online" value="online" />
-                                        <label for="online">online</label>
-
-                                        <input type="radio" id="person" name="person" value="person" />
-                                        <label for="person">In person</label>
+                                        <input
+                                            type="radio"
+                                            id="person"
+                                            name="inPerson"
+                                            value="inPerson"
+                                            checked={this.state.inPerson}
+                                            onChange={this.handleFormChange}
+                                        />
+                                        <label htmlFor="person">In person</label>
 
                                     </div>
 
@@ -98,6 +270,48 @@ export default class TutorAddService extends React.Component {
 
                                 <div></div>
 
+                        }
+                        {
+
+                            this.state.showStudentChoice ?
+
+                                <div className="role">
+
+                                    <input
+                                        type="radio"
+                                        id="tutor"
+                                        name="tutor"
+                                        value="tutor"
+
+                                    //checked={this.state.value === option.value}
+                                    //onChange={this.handleChange}}
+
+                                    />
+                                    <label
+                                        htmlFor="tutor"
+                                    >
+                                        A tutor
+                                    </label>
+
+                                    <input
+                                        type="radio"
+                                        id="student"
+                                        name="student"
+                                        value="student"
+
+                                    //checked={this.state.value === option.value}
+                                    // onChange={this.handleChange}}
+
+                                    />
+                                    <label
+                                        htmlFor="student"
+                                    >
+                                        Also a student
+                                    </label>
+
+                                </div>
+                                :
+                                <div></div>
                         }
                     </form>
                 </section>
