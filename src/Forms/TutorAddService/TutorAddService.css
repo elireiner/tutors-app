@@ -38,8 +38,6 @@
     width: 81%;
 }
 
-
-
 .tutor-add-label.subject,
 .tutor-add-input.subject,
 .tutor-add-label.fee,
@@ -52,4 +50,22 @@
     justify-content: space-between;
     width: 80%;
     margin: auto;
+}
+
+.lastDiv {
+    height: 6vh;
+    margin: auto auto;
+    line-height: 6vh;
+    text-align: center;
+    background-color: azure;
+    width: 80%;
+}
+
+.lastMessage {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    margin: 0 auto;
+    width: 80%;
+    font-weight: 800;
 }
