@@ -22,8 +22,11 @@ export default class TutorAddService extends React.Component {
             onlineMedium: false,
             tutorSubject: '',
 
-            nextClicked: false,
-            showStudentChoice: false
+            first: true,
+            second: false,
+            lastMessage: 'Submitting...',
+            submitted: false,
+            error: false
         };
         //   this.handleNextClick = this.delta.handleNextClick(this);
     }
@@ -59,11 +62,17 @@ export default class TutorAddService extends React.Component {
 
     handleNextClick = () => {
         this.setState({
-            nextClicked: true
+            first: false,
+            second: true
         })
     }
 
     handleSubmit = e => {
+
+        this.setState({
+            second: false,
+            submitted: true,
+        })
 
         e.preventDefault()
 
@@ -90,16 +99,37 @@ export default class TutorAddService extends React.Component {
             body: JSON.stringify(user),
         })
             .then(res => {
-                if (!res.ok)
+                if (!res.ok) {
                     return res.json().then(e => Promise.reject(e))
+                }
                 return res.json()
             })
             .then(user => {
-                //fix add the below method
+                this.setState({
+                    lastMessage: "Success!"
+                })
+                //* add the below method
                 //this.context.addUser(user)
             })
             .catch(error => {
-                console.error({ error })
+
+                let message = error.message
+                if (message.split(" ").includes("duplicate")) {
+                    message = "This account exist already"
+                } else {
+                    message = "There was an error"
+                }
+
+                this.setState({
+                    lastMessage: message
+                })
+            })
+            .finally((res) =>{
+                //* move user back to main page
+                //* setStates to false  except first after user left page
+                //* either automatically or by clicking on the home link
+
+                //
             })
     }
 
@@ -130,10 +160,8 @@ export default class TutorAddService extends React.Component {
                     >
 
                         {
-                            this.state.nextClicked ?
+                            this.state.first ?
 
-                                <div></div>
-                                :
                                 <>
                                     <label className="tutor-add-label" htmlFor="firstName">
                                         First name
@@ -192,11 +220,15 @@ export default class TutorAddService extends React.Component {
                                     >
                                         Next
                                     </button>
+                                </>
 
-                                </>}
+                                :
+
+                                <div></div>
+                        }
 
                         {
-                            this.state.nextClicked ?
+                            this.state.second ?
                                 <>
                                     <label className="tutor-add-label subject">
                                         Subject
@@ -240,7 +272,8 @@ export default class TutorAddService extends React.Component {
                                     </label>
 
 
-                                    <div className="medium">
+                                    {
+                                    /*  <div className="medium">
                                         <input
                                             type="radio"
                                             id="online"
@@ -262,13 +295,31 @@ export default class TutorAddService extends React.Component {
                                         <label htmlFor="person">In person</label>
 
                                     </div>
+                                    */}
 
 
                                     <input className="tutor-add-input tutor-add-input-sign-up-button" type="submit" value="Sign up" />
                                 </>
+
                                 :
 
                                 <div></div>
+
+
+                        }
+
+
+                        {
+                            this.state.submitted ?
+                                <div className="lastDiv">
+                                    <p className="lastMessage">{this.state.lastMessage}</p>
+                                </div>
+
+
+
+                                :
+                                <div></div>
+
 
                         }
                         {
