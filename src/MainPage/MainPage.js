@@ -13,7 +13,6 @@ export default class MainPage extends React.Component {
         super(props)
 
         this.state = {
-            tutors: this.props.tutors,
             fee: "all",
             medium: "all",
             gender: "all"
@@ -50,16 +49,16 @@ export default class MainPage extends React.Component {
                 </div>
                 <div>
 
-                    <section className="filter-section">
-                        {<Filters
-                            {...props}
-                        />}
-                    </section>
-
+                    {// <section className="filter-section">
+                        //  {<Filters
+                        //    {...props}
+                        // />}
+                        // </section>
+                    }
                     <section>
-                  
+
                         <ul className="tutors-list">
-                            {this.state.tutors.map(tutor =>
+                            {this.props.tutors.map(tutor =>
                                 <Tutor
                                     key={tutor.id}
                                     {...tutor}
