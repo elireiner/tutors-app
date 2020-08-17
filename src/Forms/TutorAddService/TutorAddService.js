@@ -1,6 +1,7 @@
 import React from 'react'
 import FormNav from '../../FormNav/FormNav'
 import config from '../../config'
+import TutorsContext from '../../TutorsContext'
 import './TutorAddService.css'
 
 export default class TutorAddService extends React.Component {
@@ -18,9 +19,9 @@ export default class TutorAddService extends React.Component {
             student: false,
             tutor: true,
             fee: 0,
+            onlineMedium: true,
             inPerson: false,
-            onlineMedium: false,
-            tutorSubject: '',
+            tutorSubjects: [],
 
             first: true,
             second: false,
@@ -28,35 +29,49 @@ export default class TutorAddService extends React.Component {
             submitted: false,
             error: false
         };
-        //   this.handleNextClick = this.delta.handleNextClick(this);
     }
 
-    handleFormChange = (event) => {
+    static contextType = TutorsContext;
+
+    setStateAsync(state) {
+        return new Promise((resolve) => {
+            this.setState(state, resolve)
+        });
+    }
+
+    handleFormChange = async (event) => {
         const target = event.target;
 
-        if (target.name === "inPerson" || target.name === "onlineMedium") {
+        if (target.name === "onlineMedium" || target.name === "inPerson") {
+            if (event.target.checked && !this.state[target.name]) {
+                this.setState({
+                    [target.name]: true,
+                })
+            }
+            else if (event.target.checked && this.state[target.name]) {
+                this.setState({
+                    [target.name]: false,
+                })
+            }
 
-            const value = !this.state[target.value]
-            console.log(value)
-            const name = target.name;
-            console.log({ [name]: value })
-
-
-            this.setState({
-                [name]: value
-            });
         }
 
         else {
             const value = target.value;
             const name = target.name;
 
-            this.setState({
+            if (name === "tutorSubjects") {
+                await this.setStateAsync({
+                    tutorSubjects: [
+                        ...this.state.tutorSubjects,
+                        value
+                    ]
+                })
+            }
+
+            await this.setStateAsync({
                 [name]: value
             })
-            console.log(this.state.gender)
-
-
         }
     }
 
@@ -87,8 +102,9 @@ export default class TutorAddService extends React.Component {
             fee: this.state.fee,
             in_person: this.state.inPerson,
             online_medium: this.state.onlineMedium,
-            subjects: this.state.inPerson
+            subjects: this.state.tutorSubjects
         }
+
 
         fetch(config.API_ENDPOINT, {
             method: 'POST',
@@ -99,32 +115,33 @@ export default class TutorAddService extends React.Component {
             body: JSON.stringify(user),
         })
             .then(res => {
-                if (!res.ok) {
+                if (!res.ok)
                     return res.json().then(e => Promise.reject(e))
-                }
+
+                console.log(res)
                 return res.json()
             })
             .then(user => {
                 this.setState({
                     lastMessage: "Success!"
                 })
-                //* add the below method
-                //this.context.addUser(user)
+
+                console.log(user)
+                this.context.addUser(user)
             })
             .catch(error => {
-
                 let message = error.message
                 if (message.split(" ").includes("duplicate")) {
                     message = "This account exist already"
                 } else {
-                    message = "There was an error"
+                    message = `There was an error ${error.message}`
                 }
 
                 this.setState({
                     lastMessage: message
                 })
             })
-            .finally((res) =>{
+            .finally((res) => {
                 //* move user back to main page
                 //* setStates to false  except first after user left page
                 //* either automatically or by clicking on the home link
@@ -206,7 +223,7 @@ export default class TutorAddService extends React.Component {
                                             minLength="8"
                                             name="userPassword"
                                             autoComplete="on"
-                                            required
+
                                             value={this.state.userPassword}
                                             onChange={this.handleFormChange}
                                         />
@@ -236,9 +253,9 @@ export default class TutorAddService extends React.Component {
                                             className="tutor-add-input subject"
                                             type="text"
                                             minLength="2"
-                                            name="tutorSubject"
-                                            required
-                                            value={this.state.tutorSubject}
+                                            name="tutorSubjects"
+
+                                            value={this.state.tutorSubjects}
                                             onChange={this.handleFormChange}
                                         />
                                     </label>
@@ -252,7 +269,7 @@ export default class TutorAddService extends React.Component {
                                             min="1"
                                             step="any"
                                             name="fee"
-                                            required
+required
                                             value={this.state.fee}
                                             onChange={this.handleFormChange}
                                         />
@@ -273,29 +290,30 @@ export default class TutorAddService extends React.Component {
 
 
                                     {
-                                    /*  <div className="medium">
-                                        <input
-                                            type="radio"
-                                            id="online"
-                                            name="onlineMedium"
-                                            value="onlineMedium"
-                                            checked={this.state.onlineMedium}
-                                            onChange={this.handleFormChange}
-                                        />
-                                        <label htmlFor="online">online</label>
+                                    /* 
+                                    */ <div className="medium">
+                                            <input
+                                                type="radio"
+                                                id="online"
+                                                name="onlineMedium"
+                                                value="click"
+                                                checked={this.state.onlineMedium}
+                                                onClick={this.handleFormChange}
+                                            />
+                                            <label htmlFor="online">online</label>
 
-                                        <input
-                                            type="radio"
-                                            id="person"
-                                            name="inPerson"
-                                            value="inPerson"
-                                            checked={this.state.inPerson}
-                                            onChange={this.handleFormChange}
-                                        />
-                                        <label htmlFor="person">In person</label>
+                                            <input
+                                                type="radio"
+                                                id="person"
+                                                name="inPerson"
+                                                value="click"
+                                                checked={this.state.inPerson}
+                                                onClick={this.handleFormChange}
+                                            />
+                                            <label htmlFor="person">In person</label>
 
-                                    </div>
-                                    */}
+                                        </div>
+                                   /* */}
 
 
                                     <input className="tutor-add-input tutor-add-input-sign-up-button" type="submit" value="Sign up" />
