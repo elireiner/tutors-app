@@ -21,7 +21,7 @@ export default class TutorAddService extends React.Component {
             fee: 0,
             onlineMedium: true,
             inPerson: false,
-            subjects: [],
+            subjects: null,
 
             first: true,
             second: false,
@@ -60,9 +60,11 @@ export default class TutorAddService extends React.Component {
             const value = target.value;
             const name = target.name;
 
-   if (name === "tutorSubjects") {
-                let subjects = this.state.subjects.concat(value);
+            if (name === "tutorSubjects") {
+                //let subjects = this.state.subjects.concat(value);
 
+                let subjects = []
+                subjects.push(value)
                 this.setState({
                     subjects
                 })
@@ -102,6 +104,7 @@ export default class TutorAddService extends React.Component {
             online_medium: this.state.onlineMedium,
             subjects: this.state.subjects
         }
+        console.log(user)
 
         fetch(config.API_ENDPOINT, {
             method: 'POST',
@@ -120,6 +123,7 @@ export default class TutorAddService extends React.Component {
                 this.setState({
                     lastMessage: "Success!"
                 })
+                console.log(user)
                 this.context.addUser(user)
             })
             .catch(error => {
