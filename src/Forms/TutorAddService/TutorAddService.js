@@ -128,7 +128,10 @@ export default class TutorAddService extends React.Component {
             })
             .catch(error => {
                 let message = error.message
-                if (message.split(" ").includes("duplicate")) {
+                if (typeof message === "undefined") {
+                    message = "There was an unknown error."
+                }
+                else if (message.split(" ").includes("duplicate")) {
                     message = "This account exist already"
                 } else {
                     message = `There was an error ${error.message}`
