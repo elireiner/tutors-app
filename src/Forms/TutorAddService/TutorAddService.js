@@ -60,8 +60,7 @@ export default class TutorAddService extends React.Component {
             const value = target.value;
             const name = target.name;
 
-
-            if (name === "tutorSubjects") {
+   if (name === "tutorSubjects") {
                 let subjects = this.state.subjects.concat(value);
 
                 this.setState({
