@@ -60,12 +60,14 @@ export default class TutorAddService extends React.Component {
             const value = target.value;
             const name = target.name;
 
+            let subjects = [
+                ...this.state.tutorSubjects,
+                value
+            ]
+            console.log(subjects)
             if (name === "tutorSubjects") {
                 await this.setStateAsync({
-                    tutorSubjects: [
-                        ...this.state.tutorSubjects,
-                        value
-                    ]
+                    tutorSubjects: subjects
                 })
             }
 
