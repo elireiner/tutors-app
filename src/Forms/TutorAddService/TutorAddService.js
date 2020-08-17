@@ -104,7 +104,7 @@ export default class TutorAddService extends React.Component {
             online_medium: this.state.onlineMedium,
             subjects: this.state.tutorSubjects
         }
-
+        console.log(user)
 
         fetch(config.API_ENDPOINT, {
             method: 'POST',
@@ -117,16 +117,12 @@ export default class TutorAddService extends React.Component {
             .then(res => {
                 if (!res.ok)
                     return res.json().then(e => Promise.reject(e))
-
-                console.log(res)
                 return res.json()
             })
             .then(user => {
                 this.setState({
                     lastMessage: "Success!"
                 })
-
-                console.log(user)
                 this.context.addUser(user)
             })
             .catch(error => {
@@ -269,7 +265,7 @@ export default class TutorAddService extends React.Component {
                                             min="1"
                                             step="any"
                                             name="fee"
-required
+                                            required
                                             value={this.state.fee}
                                             onChange={this.handleFormChange}
                                         />
@@ -289,31 +285,30 @@ required
                                     </label>
 
 
-                                    {
-                                    /* 
-                                    */ <div className="medium">
-                                            <input
-                                                type="radio"
-                                                id="online"
-                                                name="onlineMedium"
-                                                value="click"
-                                                checked={this.state.onlineMedium}
-                                                onClick={this.handleFormChange}
-                                            />
-                                            <label htmlFor="online">online</label>
 
-                                            <input
-                                                type="radio"
-                                                id="person"
-                                                name="inPerson"
-                                                value="click"
-                                                checked={this.state.inPerson}
-                                                onClick={this.handleFormChange}
-                                            />
-                                            <label htmlFor="person">In person</label>
+                                    <div className="medium">
+                                        <input
+                                            type="radio"
+                                            id="online"
+                                            name="onlineMedium"
+                                            value="click"
+                                            checked={this.state.onlineMedium}
+                                            onClick={this.handleFormChange}
+                                        />
+                                        <label htmlFor="online">online</label>
 
-                                        </div>
-                                   /* */}
+                                        <input
+                                            type="radio"
+                                            id="person"
+                                            name="inPerson"
+                                            value="click"
+                                            checked={this.state.inPerson}
+                                            onClick={this.handleFormChange}
+                                        />
+                                        <label htmlFor="person">In person</label>
+
+                                    </div>
+
 
 
                                     <input className="tutor-add-input tutor-add-input-sign-up-button" type="submit" value="Sign up" />
