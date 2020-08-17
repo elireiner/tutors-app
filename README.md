@@ -11,5 +11,4 @@ Take a look at the API I built for this site [here](https://github.com/elireiner
 
 - Implement filters
 - Enhance form layout
-- Add radio button functionality
 
