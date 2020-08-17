@@ -123,7 +123,6 @@ export default class TutorAddService extends React.Component {
                 this.setState({
                     lastMessage: "Success!"
                 })
-                console.log(user)
                 this.context.addUser(user)
             })
             .catch(error => {
@@ -254,7 +253,7 @@ export default class TutorAddService extends React.Component {
                                             type="text"
                                             minLength="2"
                                             name="tutorSubjects"
-
+                                            required
                                             value={this.state.tutorSubjects}
                                             onChange={this.handleFormChange}
                                         />
