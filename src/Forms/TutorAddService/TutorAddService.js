@@ -21,7 +21,7 @@ export default class TutorAddService extends React.Component {
             fee: 0,
             onlineMedium: true,
             inPerson: false,
-            tutorSubjects: [],
+            subjects: [],
 
             first: true,
             second: false,
@@ -60,12 +60,12 @@ export default class TutorAddService extends React.Component {
             const value = target.value;
             const name = target.name;
 
+
             if (name === "tutorSubjects") {
-                await this.setStateAsync({
-                    tutorSubjects: [
-                        ...this.state.tutorSubjects,
-                        value
-                    ]
+                let subjects = this.state.subjects.concat(value);
+
+                this.setState({
+                    subjects
                 })
             }
 
@@ -90,7 +90,6 @@ export default class TutorAddService extends React.Component {
         })
 
         e.preventDefault()
-
         const user = {
             first_name: this.state.firstName,
             last_name: this.state.lastName,
@@ -102,9 +101,8 @@ export default class TutorAddService extends React.Component {
             fee: this.state.fee,
             in_person: this.state.inPerson,
             online_medium: this.state.onlineMedium,
-            subjects: this.state.tutorSubjects
+            subjects: this.state.subjects
         }
-
 
         fetch(config.API_ENDPOINT, {
             method: 'POST',
@@ -117,16 +115,12 @@ export default class TutorAddService extends React.Component {
             .then(res => {
                 if (!res.ok)
                     return res.json().then(e => Promise.reject(e))
-
-                console.log(res)
                 return res.json()
             })
             .then(user => {
                 this.setState({
                     lastMessage: "Success!"
                 })
-
-                console.log(user)
                 this.context.addUser(user)
             })
             .catch(error => {
@@ -269,7 +263,7 @@ export default class TutorAddService extends React.Component {
                                             min="1"
                                             step="any"
                                             name="fee"
-required
+                                            required
                                             value={this.state.fee}
                                             onChange={this.handleFormChange}
                                         />
@@ -289,31 +283,30 @@ required
                                     </label>
 
 
-                                    {
-                                    /* 
-                                    */ <div className="medium">
-                                            <input
-                                                type="radio"
-                                                id="online"
-                                                name="onlineMedium"
-                                                value="click"
-                                                checked={this.state.onlineMedium}
-                                                onClick={this.handleFormChange}
-                                            />
-                                            <label htmlFor="online">online</label>
 
-                                            <input
-                                                type="radio"
-                                                id="person"
-                                                name="inPerson"
-                                                value="click"
-                                                checked={this.state.inPerson}
-                                                onClick={this.handleFormChange}
-                                            />
-                                            <label htmlFor="person">In person</label>
+                                    <div className="medium">
+                                        <input
+                                            type="radio"
+                                            id="online"
+                                            name="onlineMedium"
+                                            value="click"
+                                            checked={this.state.onlineMedium}
+                                            onClick={this.handleFormChange}
+                                        />
+                                        <label htmlFor="online">online</label>
 
-                                        </div>
-                                   /* */}
+                                        <input
+                                            type="radio"
+                                            id="person"
+                                            name="inPerson"
+                                            value="click"
+                                            checked={this.state.inPerson}
+                                            onClick={this.handleFormChange}
+                                        />
+                                        <label htmlFor="person">In person</label>
+
+                                    </div>
+
 
 
                                     <input className="tutor-add-input tutor-add-input-sign-up-button" type="submit" value="Sign up" />
