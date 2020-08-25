@@ -1,16 +1,14 @@
 import React from 'react'
 import FormNav from '../../FormNav/FormNav'
-import config from '../../config'
-import TutorsContext from '../../TutorsContext'
+import config from '../../../config'
+import TutorsContext from '../../../TutorsContext'
 import './TutorAddService.css'
 
 export default class TutorAddService extends React.Component {
     constructor(props) {
         super(props);
-
-
+        
         this.state = {
-
             firstName: '',
             lastName: '',
             email: '',
@@ -123,6 +121,9 @@ export default class TutorAddService extends React.Component {
                 this.setState({
                     lastMessage: "Success!"
                 })
+
+                console.log(user)
+                
                 this.context.addUser(user)
             })
             .catch(error => {

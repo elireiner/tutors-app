@@ -1,13 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import MainPage from "./MainPage/MainPage";
-import StudentSignUp from "./Forms/StudentSignUp/StudentSignUp";
-import TutorSignUp from "./Forms/TutorSignUp/TutorSignUp";
-import StudentLogIn from "./Forms/StudentLogIn/StudentLogIn";
-import TutorLogIn from "./Forms/TutorLogIn/TutorLogIn";
-import TutorAddService from "./Forms/TutorAddService/TutorAddService";
-import TutorsContext from "./TutorsContext";
-import config from "./config";
+import MainPage from "../MainPage/MainPage";
+import StudentSignUp from "../Forms/StudentSignUp/StudentSignUp";
+import TutorSignUp from "../Forms/TutorSignUp/TutorSignUp";
+import StudentLogIn from "../Forms/StudentLogIn/StudentLogIn";
+import TutorLogIn from "../Forms/TutorLogIn/TutorLogIn";
+import TutorAddService from "../Forms/TutorAddService/TutorAddService";
+import TutorsContext from "../../TutorsContext";
+import config from "../../config";
 import "./App.css";
 
 export default class App extends React.Component {
@@ -16,6 +16,10 @@ export default class App extends React.Component {
         tutors: [],
         students: [],
         error: null,
+        currentTutors: [],
+        medium: "all",
+        fee: "all",
+        gender: "all"
     };
 
     separate = (users) => {
@@ -57,12 +61,19 @@ export default class App extends React.Component {
             );
     }
 
-    addUser = user => {
+    addUser = (user) => {
         console.log(user)
         this.setState({
             users: [...this.state.users, user],
-        },  this.separate(this.state.users));
+        }, this.separate(this.state.users));
     };
+
+    setFilters = (e) => {
+        const name = e.target.name;
+        this.setState({
+            [name]: e.target.value
+        })
+    }
 
     render() {
         const contextValue = {
@@ -81,7 +92,12 @@ export default class App extends React.Component {
                         exact
                         path="/"
                         render={(props) => (
-                            <MainPage tutors={this.state.tutors} {...props} />
+                            <MainPage
+                                tutors={this.state.tutors}
+                                currentTutors={this.state.currentTutors}
+                                setFilters={this.setFilters}
+                                {...props}
+                            />
                         )}
                     />
 

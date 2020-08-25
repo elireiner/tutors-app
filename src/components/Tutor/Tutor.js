@@ -1,5 +1,5 @@
 import React from 'react'
-import TutorsContext from '../TutorsContext';
+import TutorsContext from '../../contexts/TutorsContext';
 import PropTypes from 'prop-types';
 import './Tutor.css'
 

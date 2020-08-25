@@ -1,5 +1,5 @@
 import React from 'react'
-import TutorsContext from '../TutorsContext'
+import TutorsContext from '../../contexts/TutorsContext'
 import Tutor from '../Tutor/Tutor'
 import Filters from '../Filters/Filters'
 import Nav from '../Nav/Nav'
@@ -13,28 +13,22 @@ export default class MainPage extends React.Component {
         super(props)
 
         this.state = {
-            fee: "all",
-            medium: "all",
-            gender: "all"
+            currentTutors: this.props.tutors,
         };
     }
 
-    handleGenderChange = (e) => {
-        this.setState({ gender: e.target.value });
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            currentTutors: nextProps.tutors,
+        })
     }
 
-    handleMediumChange = (e) => {
-
+    handleSelectChange = (e) => {
+        this.props.setFilters(e)
     }
-
-    handlePriceChange = (e) => {
-
-    }
-
 
     render() {
 
-        console.log(this.props.tutors)
         const props = {
             handleGenderChange: this.handleGenderChange,
             handleMediumChange: this.handleMediumChange,
@@ -49,16 +43,16 @@ export default class MainPage extends React.Component {
                 </div>
                 <div>
 
-                    {// <section className="filter-section">
-                        //  {<Filters
-                        //    {...props}
-                        // />}
-                        // </section>
-                    }
+                    <section className="filter-section">
+                        {<Filters
+                            {...props}
+                        />}
+                    </section>
+
                     <section>
 
                         <ul className="tutors-list">
-                            {this.props.tutors.map(tutor =>
+                            {this.state.currentTutors.map(tutor =>
                                 <Tutor
                                     key={tutor.id}
                                     {...tutor}
