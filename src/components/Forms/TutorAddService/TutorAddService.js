@@ -1,7 +1,7 @@
 import React from 'react'
 import FormNav from '../../FormNav/FormNav'
 import config from '../../../config'
-import TutorsContext from '../../../TutorsContext'
+import TutorsContext from '../../../contexts/TutorsContext'
 import './TutorAddService.css'
 
 export default class TutorAddService extends React.Component {

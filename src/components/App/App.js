@@ -6,7 +6,7 @@ import TutorSignUp from "../Forms/TutorSignUp/TutorSignUp";
 import StudentLogIn from "../Forms/StudentLogIn/StudentLogIn";
 import TutorLogIn from "../Forms/TutorLogIn/TutorLogIn";
 import TutorAddService from "../Forms/TutorAddService/TutorAddService";
-import TutorsContext from "../../TutorsContext";
+import TutorsContext from "../../contexts/TutorsContext";
 import config from "../../config";
 import "./App.css";
 
