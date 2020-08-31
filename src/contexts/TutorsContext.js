@@ -5,6 +5,7 @@ const TutorsContext = React.createContext({
   tutors: [],
   students: [],
   addUser: () => {},
+  addTutor: () => {},
   updateUser: () => {},
   deleteNote: () => {},
 })
