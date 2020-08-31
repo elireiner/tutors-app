@@ -13,13 +13,13 @@ export default class MainPage extends React.Component {
         super(props)
 
         this.state = {
-            currentTutors: this.props.tutors,
+            currentTutors: [],
         };
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            currentTutors: nextProps.tutors,
+            currentTutors: nextProps.currentTutors,
         })
     }
 
@@ -30,9 +30,7 @@ export default class MainPage extends React.Component {
     render() {
 
         const props = {
-            handleGenderChange: this.handleGenderChange,
-            handleMediumChange: this.handleMediumChange,
-            handlePriceChange: this.handlePriceChange
+            handleSelectChange: this.handleSelectChange,
         }
 
         return (
