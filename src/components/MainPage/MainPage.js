@@ -9,20 +9,6 @@ import PropTypes from 'prop-types';
 export default class MainPage extends React.Component {
     //fix organize default props and constructor
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            currentTutors: [],
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            currentTutors: nextProps.currentTutors,
-        })
-    }
-
     handleSelectChange = (e) => {
         this.props.setFilters(e)
     }
@@ -50,7 +36,7 @@ export default class MainPage extends React.Component {
                     <section>
 
                         <ul className="tutors-list">
-                            {this.state.currentTutors.map(tutor =>
+                            {this.props.currentTutors.map(tutor =>
                                 <Tutor
                                     key={tutor.id}
                                     {...tutor}
