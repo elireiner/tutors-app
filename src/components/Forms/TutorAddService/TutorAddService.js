@@ -117,14 +117,14 @@ export default class TutorAddService extends React.Component {
                     return res.json().then(e => Promise.reject(e))
                 return res.json()
             })
-            .then(user => {
+            .then(tutor => {
                 this.setState({
                     lastMessage: "Success!"
                 })
 
-                console.log(user)
+                console.log(tutor)
                 
-                this.context.addUser(user)
+                this.context.addTutor(tutor)
             })
             .catch(error => {
                 let message = error.message
@@ -283,8 +283,8 @@ export default class TutorAddService extends React.Component {
                                             onChange={this.handleFormChange}
                                         >
                                             <option value="gender">Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                         </select>
                                     </label>
 
