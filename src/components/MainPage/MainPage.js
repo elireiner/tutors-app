@@ -13,12 +13,12 @@ export default class MainPage extends React.Component {
         this.props.setFilters(e)
     }
 
+    handleSearch = (text) => {
+       this.props.onFilterTextChange(text);
+    }
+
     render() {
-
-        const props = {
-            handleSelectChange: this.handleSelectChange,
-        }
-
+      
         return (
             <>
                 <Nav />
@@ -29,7 +29,9 @@ export default class MainPage extends React.Component {
 
                     <section className="filter-section">
                         {<Filters
-                            {...props}
+                            handleSearch={this.handleSearch}
+                            searchText={this.props.searchText}
+                            handleSelectChange={this.handleSelectChange}
                         />}
                     </section>
 

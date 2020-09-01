@@ -18,6 +18,7 @@ export default class App extends React.Component {
         students: [],
         error: null,
         currentTutors: [],
+        searchText: '',
         medium: "all",
         gender: "all",
         fee: "all"
@@ -36,7 +37,6 @@ export default class App extends React.Component {
 
     setUsers = (users) => {
         users.forEach((user) => (user.rating = parseInt(user.rating)));
-        console.log(users);
         this.setState({
             users,
             error: null,
@@ -73,35 +73,32 @@ export default class App extends React.Component {
                     currentTutors: [...this.state.currentTutors, res]
                 })
             })
-            .then(res => {
-                console.log(this.state.currentTutors)
-
-            })
     };
 
     componentDidUpdate(prevProps, prevState) {
-
-        console.log(this.state.gender)
+        console.log(this.state.searchText)
         // check if filters updated:
-        let filters = ["medium", "fee", "gender"]
+        let filters = ["medium", "fee", "gender", "searchText"]
         let changed = filters.map(filter => {
             if (prevState[filter] !== this.state[filter]) {
                 return true
             }
             return false
         }).filter(boolean => boolean === true)
-
-        console.log(changed)
-
+        //console.log(changed[0] === true)
         //filter only if a filter changed
         if (changed[0] === true) {
 
             let currentTutors = this.state.tutors;
 
+            // Filter by subject:
+            if (this.state.searchText.length > 3) {
+                currentTutors = currentTutors.filter(tutor => tutor.subjects.includes(this.state.searchText.toLowerCase()))
+            }
+
             // Filter by medium:
             if (this.state.medium === "online") {
                 currentTutors = currentTutors.filter(tutor => tutor.online_medium === true)
-                //   console.log(currentTutors)
             }
             else if (this.state.medium === "person") {
                 currentTutors = currentTutors.filter(tutor => tutor.in_person === true)
@@ -122,11 +119,18 @@ export default class App extends React.Component {
             else if (this.state.fee === "50") {
                 currentTutors = currentTutors.filter(tutor => tutor.fee < 50)
             }
-            console.log(currentTutors)
+
+            //console.log(currentTutors)
             this.setState({
                 currentTutors
             })
         }
+    }
+
+    onFilterTextChange = (text) => {
+        this.setState({
+            searchText: text
+        });
     }
 
     setFilters = (e) => {
@@ -146,7 +150,7 @@ export default class App extends React.Component {
             updateUser: this.updateUser,
             deleteNote: this.deleteNote,
         };
-        //  console.log(this.state.currentTutors)
+
         return (
 
             <div className="App">
@@ -157,6 +161,8 @@ export default class App extends React.Component {
                         render={(props) => (
                             <MainPage
                                 currentTutors={this.state.currentTutors}
+                                onFilterTextChange={this.onFilterTextChange}
+                                searchText={this.state.searchText}
                                 setFilters={this.setFilters}
                                 {...props}
                             />

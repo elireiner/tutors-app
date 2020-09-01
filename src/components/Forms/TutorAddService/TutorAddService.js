@@ -100,9 +100,8 @@ export default class TutorAddService extends React.Component {
             fee: this.state.fee,
             in_person: this.state.inPerson,
             online_medium: this.state.onlineMedium,
-            subjects: this.state.subjects
+            subjects: this.state.subjects.toLowerCase()
         }
-        console.log(user)
 
         fetch(config.API_ENDPOINT, {
             method: 'POST',
@@ -121,8 +120,6 @@ export default class TutorAddService extends React.Component {
                 this.setState({
                     lastMessage: "Success!"
                 })
-
-                console.log(tutor)
                 
                 this.context.addTutor(tutor)
             })

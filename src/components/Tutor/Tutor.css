@@ -17,5 +17,6 @@
 }
 
 .tutor-subject {
-    flex-grow: 2; 
+    flex-grow: 2;
+    Text-Transform: capitalize;
 }
