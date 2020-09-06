@@ -1,6 +1,6 @@
 import React from 'react'
 import TutorsContext from '../../contexts/TutorsContext'
-import Tutor from '../Tutor/Tutor'
+import TutorLink from '../TutorLink/TutorLink'
 import Filters from '../Filters/Filters'
 import Nav from '../Nav/Nav'
 import './MainPage.css'
@@ -39,7 +39,7 @@ export default class MainPage extends React.Component {
 
                         <ul className="tutors-list">
                             {this.props.currentTutors.map(tutor =>
-                                <Tutor
+                                <TutorLink
                                     key={tutor.id}
                                     {...tutor}
                                 />

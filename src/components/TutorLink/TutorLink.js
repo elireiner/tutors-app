@@ -1,7 +1,7 @@
 import React from 'react'
 import TutorsContext from '../../contexts/TutorsContext';
 import PropTypes from 'prop-types';
-import './Tutor.css'
+import './TutorLink.css'
 
 export default class Tutor extends React.Component {
     static defaultProps = {
