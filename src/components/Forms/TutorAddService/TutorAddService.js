@@ -89,6 +89,9 @@ export default class TutorAddService extends React.Component {
         })
 
         e.preventDefault()
+        
+        let lowerCaseState = this.state.subjects.map(subject => subject.toLowerCase())
+
         const user = {
             first_name: this.state.firstName,
             last_name: this.state.lastName,
@@ -100,7 +103,7 @@ export default class TutorAddService extends React.Component {
             fee: this.state.fee,
             in_person: this.state.inPerson,
             online_medium: this.state.onlineMedium,
-            subjects: this.state.subjects.toLowerCase()
+            subjects: lowerCaseState
         }
 
         fetch(config.API_ENDPOINT, {
@@ -156,7 +159,7 @@ export default class TutorAddService extends React.Component {
 
                 {
                     <section className="welcome">
-                        <h1 className="welcomeHeader">Tutors<br/>help students find you</h1>
+                        <h1 className="welcomeHeader">Tutors<br />help students find you</h1>
                     </section>
                     //<div className="toggle">
                     // <p className="current-form">signup</p>
