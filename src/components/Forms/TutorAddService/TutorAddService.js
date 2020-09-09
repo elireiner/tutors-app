@@ -7,7 +7,7 @@ import './TutorAddService.css'
 export default class TutorAddService extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             firstName: '',
             lastName: '',
@@ -118,9 +118,9 @@ export default class TutorAddService extends React.Component {
             })
             .then(tutor => {
                 this.setState({
-                    lastMessage: "Success!"
+                    lastMessage: "Success! Look forward to students emailing you!"
                 })
-                
+
                 this.context.addTutor(tutor)
             })
             .catch(error => {
@@ -131,7 +131,7 @@ export default class TutorAddService extends React.Component {
                 else if (message.split(" ").includes("duplicate")) {
                     message = "This account exist already"
                 } else {
-                    message = `There was an error ${error.message}`
+                    message = `Error: ${error.message}`
                 }
 
                 this.setState({
@@ -155,9 +155,9 @@ export default class TutorAddService extends React.Component {
                 <FormNav />
 
                 {
-                    //<section className="welcome">
-                    //   <p>Welcome</p>
-                    // </section>
+                    <section className="welcome">
+                        <h1 className="welcomeHeader">Tutors<br/>help students find you</h1>
+                    </section>
                     //<div className="toggle">
                     // <p className="current-form">signup</p>
                     // {'/'}
