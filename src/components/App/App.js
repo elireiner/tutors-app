@@ -8,7 +8,8 @@ import TutorLogIn from "../Forms/TutorLogIn/TutorLogIn";
 import TutorAddService from "../Forms/TutorAddService/TutorAddService";
 import TutorsContext from "../../contexts/TutorsContext";
 import config from "../../config";
-import UsersApiService from '../../services/users-api-service'
+import UsersApiService from '../../services/users-api-service';
+import TutorPage from '../TutorPage/TutorPage'
 import "./App.css";
 
 export default class App extends React.Component {
@@ -173,6 +174,15 @@ export default class App extends React.Component {
 
                     <Route path="/tutors/add-service" component={TutorAddService} />{" "}
 
+                    <Route
+                        path="/tutors-page/:tutorId"
+                        render={(props) => (
+                            <TutorPage
+                                tutors={this.state.tutors}
+                                {...props}
+                            />
+                        )}
+                    />{" "}
                     <Route path="/students/login" component={StudentLogIn} />{" "}
 
                     <Route path="/tutors/signup" component={TutorSignUp} />{" "}
