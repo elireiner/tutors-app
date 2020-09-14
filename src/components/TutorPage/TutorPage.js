@@ -17,21 +17,21 @@ export default class TutorPage extends React.Component {
             <>
                 < FormNav />
                 <h1>Welcome to my page!</h1>
-                <div className="tutor">
-                    <p className="tutors-item tutor-name">My name is {currentTutor.first_name}</p>
+                <div className="tutor-page">
+                    <p className="tutors-item tutor-page-name">My name is {currentTutor.first_name}</p>
                     {numberOfSubjects
-                        ? <p className="tutors-item tutor-subject">I tutor {currentTutor.subjects}</p>
+                        ? <p className="tutors-item tutor-page-subject">I tutor {currentTutor.subjects}</p>
                         :
                         <>
-                            <p className="tutors-item tutor-subject">I tutor the following subjects:</p>
+                            <p className="tutors-item tutor-page-subject">I tutor the following subjects:</p>
 
                             <ul>
                                 {currentTutor.subjects.map(subject => <li>{subject}</li>)}
                             </ul>
                         </>
                     }
-                    <p className="tutors-item tutor-price">My fee is {currentTutor.fee} dollars</p>
-                    <p className="tutors-item tutor-email">Please email me <a href={`mailto:${currentTutor.email}`}>here</a></p>
+                    <p className="tutors-item tutor-page-price">My fee is {currentTutor.fee} dollars</p>
+                    <p className="tutors-item tutor-page-email">Please email me <a href={`mailto:${currentTutor.email}`}>here</a></p>
                 </div>
             </>
         )

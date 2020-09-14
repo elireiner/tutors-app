@@ -1,22 +1,29 @@
-.tutors-list> .tutor {
-    display: flex;
-    background-color: #9CBABA;
-    width: 70%;
-    padding: 1vw;
-    margin-bottom: 4.5vh;
-    font-size: 18px;
+.tutor {
+  background-color: #9cbaba;
+  width: 70%;
+  color: #444;
+  padding: 1vw;
+  margin-bottom: 4.5vh;
+  font-size: 18px;
+}
+
+.tutor-ul {
+  display: flex;
 }
 
 .tutors-item {
-    text-align: center;
-    width: 32%;
+  text-align: center;
+  width: 32%;
 }
-
-.tutor-price, .tutor-name {
-    flex-grow: 1;
+.tutor-name {
+  text-decoration: underline;
+}
+.tutor-price,
+.tutor-name {
+  flex-grow: 1;
 }
 
 .tutor-subject {
-    flex-grow: 2;
-    Text-Transform: capitalize;
+  flex-grow: 2;
+  text-transform: capitalize;
 }
