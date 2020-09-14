@@ -15,7 +15,7 @@ import "./App.css";
 export default class App extends React.Component {
     state = {
         users: [],
-        tutors: [],
+        tutors: null,
         students: [],
         error: null,
         currentTutors: [],
