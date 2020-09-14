@@ -15,7 +15,7 @@ export default class TutorLink extends React.Component {
             <TutorsContext.Consumer >
                 {(context) => (
                     <Link className="tutor" to={`/tutors-page/${this.props.user_id}`}>
-                        <li className="tutor">
+                        <li className="tutor-ul">
                             <p className="tutors-item tutor-name">{this.props.first_name}</p>
                             <p className="tutors-item tutor-subject">{this.props.subjects[0]}</p>
                             <p className="tutors-item tutor-price">{this.props.fee}</p>
