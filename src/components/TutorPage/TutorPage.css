@@ -1,0 +1,21 @@
+.tutor-page-header {
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  margin-top: 5vh;
+}
+
+.tutor-page-info {
+  background-color: #9cbaba;
+  width: 73%;
+  margin: auto;
+  margin-top: 9vh;
+}
+
+.tutors-page-item {
+  padding: 15px;
+}
+
+.tutor-page-subject {
+    padding: 10px;
+}
