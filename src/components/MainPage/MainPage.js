@@ -22,17 +22,14 @@ export default class MainPage extends React.Component {
         return (
             <>
                 <Nav />
-                <div className="beta">
-                    <span>Beta; please bear with us</span>
-                </div>
                 <div>
 
                     <section className="filter-section">
-                        {<Filters
+                        <Filters
                             handleSearch={this.handleSearch}
                             searchText={this.props.searchText}
                             handleSelectChange={this.handleSelectChange}
-                        />}
+                        />
                     </section>
 
                     <section>

@@ -30,21 +30,3 @@ a:active {
     margin-top: 5vh;
     padding: 0;
 }
-
-.beta {
-    background-color: blueviolet;
-    color: azure;
-    height: 6vh;
-    line-height: 6vh;
-    text-align: center;
-
-}
-
-.beta>span {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
-    margin: 0 auto;
-    width: 80%;
-    font-weight: 800;
-}
