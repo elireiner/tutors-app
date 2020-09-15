@@ -16,7 +16,7 @@ export default class Filters extends React.Component {
 
                     <h2 className="heading">What tutor are you looking for?</h2>
 
-                    {/*<label className="search-label" htmlFor="search-input">
+                    <label className="search-label" htmlFor="search-input">
                         <input
                             type="text"
                             id="search-input"
@@ -25,7 +25,7 @@ export default class Filters extends React.Component {
                             onChange={this.handleFilterTextChange}
                         />
                         <i className="fa fa-search search-icon" />
-        </label>*/}
+                    </label>
                 </div>
                 <div className="filters">
                     <label>
