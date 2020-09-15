@@ -1,3 +1,9 @@
+.filter-section {
+  height: 42vh;
+  width: 70%;
+  margin: auto;
+}
+
 .tutor-table {
   height: 15vh;
 }
@@ -14,6 +20,7 @@
 }
 
 @media only screen and (min-width: 600px) {
+  .filter-section,
   .tutors-list {
     width: 67%;
   }
@@ -21,6 +28,7 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  .filter-section,
   .tutors-list {
     width: 61.5%;
   }
@@ -28,6 +36,10 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .filter-section {
+    width: 49%;
+  }
+
   .tutors-list {
     width: 57%;
   }
@@ -35,7 +47,11 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    .tutors-list {
-        width: 54%;
-      }
+  .filter-section {
+    width: 47%;
+  }
+
+  .tutors-list {
+    width: 53%;
+  }
 }
