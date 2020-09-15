@@ -9,13 +9,75 @@
   background-color: #9cbaba;
   width: 73%;
   margin: auto;
+  padding: 1%;
   margin-top: 9vh;
+ 
+}
+
+.tutors-page-item,
+.tutor-page-subject {
+  margin-left: 3vw;
 }
 
 .tutors-page-item {
-  padding: 15px;
+  padding-top: 1.5%;
+  padding-bottom: 1.5%;
 }
 
 .tutor-page-subject {
-    padding: 10px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+  .tutor-page-info {
+    width: 60%;
+  }
+
+  .tutors-page-item,
+  .tutor-page-subject {
+    margin-left: 3.5vw;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+  .tutor-page-info {
+    width: 50%;
+  }
+
+  .tutors-page-item,
+  .tutor-page-subject {
+    margin-left: 5vw;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+  .tutor-page-info {
+    width: 45%;
+ 
+  }
+
+  .tutors-page-item,
+  .tutor-page-subject {
+    margin-left: 5.5vw;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  
+  .tutor-page-info {
+    width: 40%;
+  }
+
+  .tutors-page-item,
+  .tutor-page-subject {
+    margin-left: 5vw;
+  }
 }
