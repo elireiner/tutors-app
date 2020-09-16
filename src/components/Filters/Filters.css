@@ -60,17 +60,23 @@
 }
 
 @media only screen and (min-width: 400px) {
-	.search input {
-		padding: 10px;
-		font-size: 24px;
-	}
-	.search-icon {
-	  top: -6px;
-	  font-size: 24px;
-	  right: 18px;
-	  border: white solid 3px;
-	}
+  .search input {
+    padding: 10px;
+    font-size: 24px;
   }
+
+  .search-icon {
+    top: -6px;
+    font-size: 24px;
+    right: 18px;
+    border: white solid 3px;
+  }
+
+  select {
+    width: 17vw;
+    height: 3.5vh;
+  }
+}
 
 @media only screen and (min-width: 600px) {
   .search input {
@@ -82,16 +88,32 @@
     right: 18px;
     border: white solid 3px;
   }
+  select {
+    width: 15vw;
+    height: 3.5vh;
+  }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  select {
+    width: 12vw;
+    height: 3.5vh;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  select {
+    width: 9vw;
+    height: 3.5vh;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+  select {
+    width: 8vw;
+    height: 3.5vh;
+  }
 }
