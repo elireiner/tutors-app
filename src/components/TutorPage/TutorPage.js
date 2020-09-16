@@ -32,7 +32,7 @@ export default class TutorPage extends React.Component {
                         </>
                     }
                     <p className="tutors-page-item tutor-page-price">My fee is {currentTutor.fee} dollars per session.</p>
-                    <p className="tutors-page-item tutor-page-email">Please email me <a href={`mailto:${currentTutor.email}`}>here</a>.</p>
+                    <p className="tutors-page-item tutor-page-email">Please <a href={`mailto:${currentTutor.email}`}>email</a> me.</p>
                 </div>
             </>
         )
