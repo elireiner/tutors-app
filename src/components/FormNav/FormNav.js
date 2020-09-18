@@ -8,8 +8,10 @@ export default class FormNav extends React.Component {
 
         return (
             <nav className="navbar">
+                <section className="nav-text">
                 <Link className="home" to='/'>Home</Link>
-            </nav>
+                </section>
+            </nav >
         )
     }
 }
