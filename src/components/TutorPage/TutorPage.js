@@ -24,7 +24,7 @@ export default class TutorPage extends React.Component {
                         ? <p className="tutors-page-item tutor-page-subject">I tutor {currentTutor.subjects}</p>
                         :
                         <>
-                            <p className="tutors-page-item tutor-page-subject">I tutor the following subjects:</p>
+                            <p className="tutors-page-item tutor-page-subjects">I tutor the following subjects:</p>
 
                             <ul>
                                 {currentTutor.subjects.map(subject => <li className="tutor-page-subject">{subject}</li>)}
