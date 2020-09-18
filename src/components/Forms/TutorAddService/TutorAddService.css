@@ -8,6 +8,12 @@
   color: #444444
 }
 
+.doneDiv{
+  margin: 0.67em 0;
+  height: 4.1em;
+  width: 100%;
+}
+
 .tutor-sign-up-section {
   height: 40vh;
   width: 100%;

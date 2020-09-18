@@ -157,16 +157,16 @@ export default class TutorAddService extends React.Component {
             <>
                 <FormNav />
 
-                {
-                    <section className="welcome">
+
+                <section className="welcome">
+                    {!this.state.submitted ?
                         <h1 className="welcomeHeader">Tutors<br />help students find you</h1>
-                    </section>
-                    //<div className="toggle">
-                    // <p className="current-form">signup</p>
-                    // {'/'}
-                    // <Link className="link" to='/tutors/login'>login</Link>
-                    // </div>
-                }
+                        : <div className="doneDiv"></div>
+                    }
+
+                </section>
+
+
                 <section className="tutor-sign-up-section">
 
                     <form
