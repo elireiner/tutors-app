@@ -1,6 +1,31 @@
-.navbar>.home {
-    color: white;
-    width: 50%;
-    padding: 2%;
-    margin: 0;
+.navbar > .home {
+  color: white;
+  width: 50%;
+  padding: 2%;
+  margin: 0;
+}
+
+.nav-text {
+  height: 60%;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  align-items: center;
+}
+
+.nav-text > .home {
+  background-color: #906d59;
+  color: white;
+  width: 35%;
+  font-size: 22px;
+  padding: 2% 0;
+  margin: 0;
+  text-align: center;
+  height: 40%;
+}
+
+.nav-text > .home:hover {
+    background-color: #a1816f;
+    border-radius: 10px
 }
