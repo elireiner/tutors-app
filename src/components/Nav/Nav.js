@@ -8,8 +8,11 @@ export default class Nav extends React.Component {
 
         return (
             <nav className="navbar">
-                <p>Tutors App</p>
-                <Link className="tutor" to='/tutors/add-service'>Teach with us</Link>
+                <section className="nav-text">
+                    <p>Tutors App</p>
+                    <Link className="tutor" to='/tutors/add-service'>Teach with us</Link>
+                </section>
+
             </nav>
         )
     }
