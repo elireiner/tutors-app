@@ -1,23 +1,28 @@
 .tutor {
   background-color: #9cbaba;
   width: 100%;
-  color: #444;
+  color: #310080;
   padding: 1vw;
   margin-bottom: 4.5vh;
   font-size: 18px;
+  border-radius: 10px
 }
 
-.tutor-ul {
+.tutor:hover {
+  background-color: #7ea5a5;
+}
+
+.tutor-li {
   display: flex;
 }
 
 .tutors-item {
   text-align: center;
+  font-weight: 700;
   width: 32%;
+  text-decoration: none;
 }
-.tutor-name {
-  text-decoration: underline;
-}
+
 .tutor-price,
 .tutor-name {
   flex-grow: 1;
