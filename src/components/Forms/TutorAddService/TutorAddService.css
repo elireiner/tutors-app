@@ -21,6 +21,9 @@
   height: 35vh;
   width: 80%;
   margin: auto;
+  color: #1F0052;
+  font-weight: 700;
+  border-radius: 10px
 }
 
 .tutor-add-label,
