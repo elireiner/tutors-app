@@ -9,9 +9,6 @@ export default class FormNav extends React.Component {
         return (
             <nav className="navbar">
                 <Link className="home" to='/'>Home</Link>
-                {
-                    // <Link to='/tutors/login'>Tutors</Link>
-                }
             </nav>
         )
     }
