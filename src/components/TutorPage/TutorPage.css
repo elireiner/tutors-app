@@ -3,6 +3,7 @@
   width: 50%;
   margin: auto;
   margin-top: 5vh;
+  color: #444;
 }
 
 .tutor-page-info {
@@ -11,12 +12,15 @@
   margin: auto;
   padding: 1%;
   margin-top: 9vh;
- 
+  border-radius: 10px
 }
 
 .tutors-page-item,
-.tutor-page-subject {
+.tutor-page-subject,
+.tutor-page-subjects {
   margin-left: 3vw;
+  color: #310080;
+  font-weight: 700;
 }
 
 .tutors-page-item {
@@ -27,9 +31,10 @@
 .tutor-page-subject {
   padding-top: 1%;
   padding-bottom: 1%;
+  text-transform: capitalize;
 }
 .tutor-page-email> a{
-  color: #1b4639;
+  color: #310080;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
