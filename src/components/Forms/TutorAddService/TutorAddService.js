@@ -74,80 +74,83 @@ export default class TutorAddService extends React.Component {
         }
     }
 
-    handleNextClick = () => {
-        this.setState({
-            first: false,
-            second: true
-        })
-    }
-
     handleSubmit = e => {
-
-        this.setState({
-            second: false,
-            submitted: true,
-        })
-
         e.preventDefault()
-        
-        let lowerCaseState = this.state.subjects.map(subject => subject.toLowerCase())
 
-        const user = {
-            first_name: this.state.firstName,
-            last_name: this.state.lastName,
-            email: this.state.email,
-            user_password: this.state.userPassword,
-            gender: this.state.gender,
-            student: this.state.student,
-            tutor: this.state.tutor,
-            fee: this.state.fee,
-            in_person: this.state.inPerson,
-            online_medium: this.state.onlineMedium,
-            subjects: lowerCaseState
+        if (!this.state.subjects) {
+            this.setState({
+                first: false,
+                second: true
+            })
+        }
+        else {
+            this.setState({
+                second: false,
+                submitted: true,
+            })
+
+
+            let lowerCaseState = this.state.subjects.map(subject => subject.toLowerCase())
+
+            const user = {
+                first_name: this.state.firstName,
+                last_name: this.state.lastName,
+                email: this.state.email,
+                user_password: this.state.userPassword,
+                gender: this.state.gender,
+                student: this.state.student,
+                tutor: this.state.tutor,
+                fee: this.state.fee,
+                in_person: this.state.inPerson,
+                online_medium: this.state.onlineMedium,
+                subjects: lowerCaseState
+            }
+
+            fetch(config.API_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${config.API_KEY}`
+                },
+                body: JSON.stringify(user),
+            })
+                .then(res => {
+                    if (!res.ok)
+                        return res.json().then(e => Promise.reject(e))
+                    return res.json()
+                })
+                .then(tutor => {
+                    this.setState({
+                        lastMessage: "Success! Look forward to students emailing you!"
+                    })
+
+                    this.context.addTutor(tutor)
+                })
+                .catch(error => {
+                    let message = error.message
+                    if (typeof message === "undefined") {
+                        message = "There was an unknown error."
+                    }
+                    else if (message.split(" ").includes("duplicate")) {
+                        message = "This account exist already"
+                    } else {
+                        message = `Error: ${error.message}`
+                    }
+
+                    this.setState({
+                        lastMessage: message
+                    })
+                })
+                .finally((res) => {
+                    //* move user back to main page
+                    //* setStates to false  except first after user left page
+                    //* either automatically or by clicking on the home link
+
+                    //
+                })
         }
 
-        fetch(config.API_ENDPOINT, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${config.API_KEY}`
-            },
-            body: JSON.stringify(user),
-        })
-            .then(res => {
-                if (!res.ok)
-                    return res.json().then(e => Promise.reject(e))
-                return res.json()
-            })
-            .then(tutor => {
-                this.setState({
-                    lastMessage: "Success! Look forward to students emailing you!"
-                })
 
-                this.context.addTutor(tutor)
-            })
-            .catch(error => {
-                let message = error.message
-                if (typeof message === "undefined") {
-                    message = "There was an unknown error."
-                }
-                else if (message.split(" ").includes("duplicate")) {
-                    message = "This account exist already"
-                } else {
-                    message = `Error: ${error.message}`
-                }
-
-                this.setState({
-                    lastMessage: message
-                })
-            })
-            .finally((res) => {
-                //* move user back to main page
-                //* setStates to false  except first after user left page
-                //* either automatically or by clicking on the home link
-
-                //
-            })
     }
 
 
@@ -156,29 +159,20 @@ export default class TutorAddService extends React.Component {
         return (
             <>
                 <FormNav />
-
-
                 <section className="welcome">
                     {!this.state.submitted ?
                         <h1 className="welcomeHeader">Tutors<br />help students find you</h1>
                         : <div className="doneDiv"></div>
                     }
-
                 </section>
-
-
                 <section className="tutor-sign-up-section">
-
+                    <p>hi</p>
                     <form
-                        action=""
-                        method="post"
                         className="tutor-sign-up-form"
                         onSubmit={this.handleSubmit}
                     >
-
                         {
                             this.state.first ?
-
                                 <>
                                     <label className="tutor-add-label" htmlFor="firstName">
                                         First name
@@ -186,11 +180,11 @@ export default class TutorAddService extends React.Component {
                                             className="tutor-add-input"
                                             type="text"
                                             name="firstName"
+                                            required
                                             value={this.state.firstName}
                                             onChange={this.handleFormChange}
                                         />
                                     </label>
-
                                     <label className="tutor-add-label">
                                         Last name
                                         <input
@@ -202,7 +196,6 @@ export default class TutorAddService extends React.Component {
                                             onChange={this.handleFormChange}
                                         />
                                     </label>
-
                                     <label className="tutor-add-label" htmlFor="email">
                                         Email
                                            <input
@@ -214,36 +207,29 @@ export default class TutorAddService extends React.Component {
                                             onChange={this.handleFormChange}
                                         />
                                     </label>
-
                                     <label className="tutor-add-label">
                                         Password
                                            <input
                                             className="tutor-add-input"
                                             type="password"
                                             minLength="8"
+                                            required
                                             name="userPassword"
                                             autoComplete="on"
-
                                             value={this.state.userPassword}
                                             onChange={this.handleFormChange}
                                         />
                                     </label>
 
-
-                                    <button
+                                    <input
                                         className="tutor-add-next-button"
                                         type="submit"
-                                        onClick={this.handleNextClick}
-                                    >
-                                        Next
-                                    </button>
+                                        value="Next"
+                                    />
                                 </>
-
                                 :
-
                                 <div></div>
                         }
-
                         {
                             this.state.second ?
                                 <>
@@ -259,8 +245,6 @@ export default class TutorAddService extends React.Component {
                                             onChange={this.handleFormChange}
                                         />
                                     </label>
-
-
                                     <label className="tutor-add-label fee">
                                         Fee
                                         <input
@@ -274,7 +258,6 @@ export default class TutorAddService extends React.Component {
                                             onChange={this.handleFormChange}
                                         />
                                     </label>
-
                                     <label className="tutor-add-label gender-label">
                                         <select
                                             className="tutor-add-gender"
@@ -287,9 +270,6 @@ export default class TutorAddService extends React.Component {
                                             <option value="Female">Female</option>
                                         </select>
                                     </label>
-
-
-
                                     <div className="medium">
                                         <input
                                             type="radio"
@@ -300,7 +280,6 @@ export default class TutorAddService extends React.Component {
                                             onClick={this.handleFormChange}
                                         />
                                         <label htmlFor="online">online</label>
-
                                         <input
                                             type="radio"
                                             id="person"
@@ -310,73 +289,45 @@ export default class TutorAddService extends React.Component {
                                             onClick={this.handleFormChange}
                                         />
                                         <label htmlFor="person">In person</label>
-
                                     </div>
-
-
-
                                     <input className="tutor-add-input tutor-add-input-sign-up-button" type="submit" value="Sign up" />
                                 </>
-
                                 :
-
                                 <div></div>
-
-
                         }
-
-
                         {
                             this.state.submitted ?
                                 <div className="lastDiv">
                                     <p className="lastMessage">{this.state.lastMessage}</p>
                                 </div>
-
-
-
                                 :
                                 <div></div>
-
-
                         }
                         {
-
                             this.state.showStudentChoice ?
-
                                 <div className="role">
-
                                     <input
                                         type="radio"
                                         id="tutor"
                                         name="tutor"
                                         value="tutor"
-
-                                    //checked={this.state.value === option.value}
-                                    //onChange={this.handleChange}}
-
                                     />
                                     <label
                                         htmlFor="tutor"
                                     >
                                         A tutor
                                     </label>
-
                                     <input
                                         type="radio"
                                         id="student"
                                         name="student"
                                         value="student"
-
-                                    //checked={this.state.value === option.value}
-                                    // onChange={this.handleChange}}
-
                                     />
                                     <label
                                         htmlFor="student"
                                     >
                                         Also a student
                                     </label>
-
                                 </div>
                                 :
                                 <div></div>
