@@ -1,8 +1,8 @@
-import React from 'react'
-import FormNav from '../../FormNav/FormNav'
-import config from '../../../config'
-import TutorsContext from '../../../contexts/TutorsContext'
-import './TutorAddService.css'
+import React from 'react';
+import FormNav from '../../FormNav/FormNav';
+import config from '../../../config';
+import TutorsContext from '../../../contexts/TutorsContext';
+import './TutorAddService.css';
 
 export default class TutorAddService extends React.Component {
     constructor(props) {
@@ -33,23 +33,23 @@ export default class TutorAddService extends React.Component {
 
     setStateAsync(state) {
         return new Promise((resolve) => {
-            this.setState(state, resolve)
+            this.setState(state, resolve);
         });
     }
 
     handleFormChange = async (event) => {
         const target = event.target;
 
-        if (target.name === "onlineMedium" || target.name === "inPerson") {
+        if (target.name === 'onlineMedium' || target.name === 'inPerson') {
             if (event.target.checked && !this.state[target.name]) {
                 this.setState({
                     [target.name]: true,
-                })
+                });
             }
             else if (event.target.checked && this.state[target.name]) {
                 this.setState({
                     [target.name]: false,
-                })
+                });
             }
 
         }
@@ -58,14 +58,14 @@ export default class TutorAddService extends React.Component {
             const value = target.value;
             const name = target.name;
 
-            if (name === "tutorSubjects") {
+            if (name === 'tutorSubjects') {
                 //let subjects = this.state.subjects.concat(value);
 
-                let subjects = []
-                subjects.push(value)
+                let subjects = [];
+                subjects.push(value);
                 this.setState({
                     subjects
-                })
+                });
             }
 
             await this.setStateAsync({
@@ -75,22 +75,22 @@ export default class TutorAddService extends React.Component {
     }
 
     handleSubmit = e => {
-        e.preventDefault()
+        e.preventDefault();
 
         if (!this.state.subjects) {
             this.setState({
                 first: false,
                 second: true
-            })
+            });
         }
         else {
             this.setState({
                 second: false,
                 submitted: true,
-            })
+            });
 
 
-            let lowerCaseState = this.state.subjects.map(subject => subject.toLowerCase())
+            let lowerCaseState = this.state.subjects.map(subject => subject.toLowerCase());
 
             const user = {
                 first_name: this.state.firstName,
@@ -104,7 +104,7 @@ export default class TutorAddService extends React.Component {
                 in_person: this.state.inPerson,
                 online_medium: this.state.onlineMedium,
                 subjects: lowerCaseState
-            }
+            };
 
             fetch(config.API_ENDPOINT, {
                 method: 'POST',
@@ -116,35 +116,35 @@ export default class TutorAddService extends React.Component {
             })
                 .then(res => {
                     if (!res.ok)
-                        return res.json().then(e => Promise.reject(e))
-                    return res.json()
+                        return res.json().then(e => Promise.reject(e));
+                    return res.json();
                 })
                 .then(tutor => {
                     this.setState({
-                        lastMessage: "Success! Look forward to students emailing you!"
-                    })
+                        lastMessage: 'Success! Look forward to students emailing you!'
+                    });
 
-                    this.context.addTutor(tutor)
+                    this.context.addTutor(tutor);
                 })
                 .catch(error => {
-                    let message = error.message
-                    if (typeof message === "undefined") {
-                        message = "There was an unknown error."
+                    let message = error.message;
+                    if (typeof message === 'undefined') {
+                        message = 'There was an unknown error.';
                     }
-                    else if (message.split(" ").includes("duplicate")) {
-                        message = "This account exist already"
+                    else if (message.split(' ').includes('duplicate')) {
+                        message = 'This account exist already';
                     } else {
-                        message = `Error: ${error.message}`
+                        message = `Error: ${error.message}`;
                     }
 
                     this.setState({
                         lastMessage: message
-                    })
-                })
+                    });
+                });
         }
 
 
-    }
+    };
 
 
     render() {

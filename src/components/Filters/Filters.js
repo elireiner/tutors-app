@@ -1,11 +1,11 @@
-import React from 'react'
-import './Filters.css'
+import React from 'react';
+import './Filters.css';
 
 export default class Filters extends React.Component {
 
     handleFilterTextChange = (e) => {
         this.props.handleSearch(e.target.value);
-    }
+    };
 
     render() {
 

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import TutorsContext from '../../contexts/TutorsContext';
-import { Link } from 'react-router-dom'
-import './TutorLink.css'
+import { Link } from 'react-router-dom';
+import './TutorLink.css';
 
 export default class TutorLink extends React.Component {
     static defaultProps = {

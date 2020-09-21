@@ -1,16 +1,16 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import MainPage from "../MainPage/MainPage";
-import StudentSignUp from "../Forms/StudentSignUp/StudentSignUp";
-import TutorSignUp from "../Forms/TutorSignUp/TutorSignUp";
-import StudentLogIn from "../Forms/StudentLogIn/StudentLogIn";
-import TutorLogIn from "../Forms/TutorLogIn/TutorLogIn";
-import TutorAddService from "../Forms/TutorAddService/TutorAddService";
-import TutorsContext from "../../contexts/TutorsContext";
-import config from "../../config";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import MainPage from '../MainPage/MainPage';
+import StudentSignUp from '../Forms/StudentSignUp/StudentSignUp';
+import TutorSignUp from '../Forms/TutorSignUp/TutorSignUp';
+import StudentLogIn from '../Forms/StudentLogIn/StudentLogIn';
+import TutorLogIn from '../Forms/TutorLogIn/TutorLogIn';
+import TutorAddService from '../Forms/TutorAddService/TutorAddService';
+import TutorsContext from '../../contexts/TutorsContext';
+import config from '../../config';
 import UsersApiService from '../../services/users-api-service';
-import TutorPage from '../TutorPage/TutorPage'
-import "./App.css";
+import TutorPage from '../TutorPage/TutorPage';
+import './App.css';
 
 export default class App extends React.Component {
     state = {
@@ -20,9 +20,9 @@ export default class App extends React.Component {
         error: null,
         currentTutors: [],
         searchText: '',
-        medium: "all",
-        gender: "all",
-        fee: "all"
+        medium: 'all',
+        gender: 'all',
+        fee: 'all'
     };
 
     separate = (users) => {
@@ -46,9 +46,9 @@ export default class App extends React.Component {
 
     componentDidMount() {
         fetch(config.API_ENDPOINT, {
-            method: "GET",
+            method: 'GET',
             headers: {
-                "content-type": "application/json",
+                'content-type': 'application/json',
                 Authorization: `Bearer ${config.API_KEY}`,
             },
         })
@@ -79,7 +79,7 @@ export default class App extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         
         // check if filters updated:
-        let filters = ["medium", "fee", "gender", "searchText"]
+        let filters = ['medium', 'fee', 'gender', 'searchText']
         let changed = filters.map(filter => {
             if (prevState[filter] !== this.state[filter]) {
                 return true
@@ -98,26 +98,26 @@ export default class App extends React.Component {
             }
 
             // Filter by medium:
-            if (this.state.medium === "online") {
+            if (this.state.medium === 'online') {
                 currentTutors = currentTutors.filter(tutor => tutor.online_medium === true)
             }
-            else if (this.state.medium === "person") {
+            else if (this.state.medium === 'person') {
                 currentTutors = currentTutors.filter(tutor => tutor.in_person === true)
             }
 
             // Filter by gender:
-            if (this.state.gender === "Male") {
-                currentTutors = currentTutors.filter(tutor => tutor.gender === "Male")
+            if (this.state.gender === 'Male') {
+                currentTutors = currentTutors.filter(tutor => tutor.gender === 'Male')
             }
-            else if (this.state.gender === "Female") {
-                currentTutors = currentTutors.filter(tutor => tutor.gender === "Female")
+            else if (this.state.gender === 'Female') {
+                currentTutors = currentTutors.filter(tutor => tutor.gender === 'Female')
             }
 
             // Filter by fee:
-            if (this.state.fee === "25") {
+            if (this.state.fee === '25') {
                 currentTutors = currentTutors.filter(tutor => tutor.fee < 25)
             }
-            else if (this.state.fee === "50") {
+            else if (this.state.fee === '50') {
                 currentTutors = currentTutors.filter(tutor => tutor.fee < 50)
             }
 

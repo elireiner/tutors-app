@@ -1,6 +1,6 @@
 import React from 'react';
-import FormNav from '../FormNav/FormNav'
-import './TutorPage.css'
+import FormNav from '../FormNav/FormNav';
+import './TutorPage.css';
 
 
 export default class TutorPage extends React.Component {
@@ -11,8 +11,8 @@ export default class TutorPage extends React.Component {
             return null
         }
 
-        const currentTutor = this.props.tutors.find(tutor => tutor.user_id === Number(this.props.match.params.tutorId))
-        const numberOfSubjects = currentTutor.subjects.length < 2
+        const currentTutor = this.props.tutors.find(tutor => tutor.user_id === Number(this.props.match.params.tutorId));
+        const numberOfSubjects = currentTutor.subjects.length < 2;
 
         return (
             <>

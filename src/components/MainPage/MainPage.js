@@ -1,19 +1,19 @@
-import React from 'react'
-import TutorLink from '../TutorLink/TutorLink'
-import Filters from '../Filters/Filters'
-import Nav from '../Nav/Nav'
-import './MainPage.css'
+import React from 'react';
+import TutorLink from '../TutorLink/TutorLink';
+import Filters from '../Filters/Filters';
+import Nav from '../Nav/Nav';
+import './MainPage.css';
 
 export default class MainPage extends React.Component {
     //fix organize default props and constructor
 
     handleSelectChange = (e) => {
         this.props.setFilters(e)
-    }
+    };
 
     handleSearch = (text) => {
        this.props.onFilterTextChange(text);
-    }
+    };
 
     render() {
       

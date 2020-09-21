@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './FormNav.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './FormNav.css';
 
 export default class FormNav extends React.Component {
 
