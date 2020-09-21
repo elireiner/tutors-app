@@ -1,10 +1,8 @@
 import React from 'react'
-import TutorsContext from '../../contexts/TutorsContext'
 import TutorLink from '../TutorLink/TutorLink'
 import Filters from '../Filters/Filters'
 import Nav from '../Nav/Nav'
 import './MainPage.css'
-import PropTypes from 'prop-types';
 
 export default class MainPage extends React.Component {
     //fix organize default props and constructor

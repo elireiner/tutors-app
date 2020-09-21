@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import './Filters.css'
 
 export default class Filters extends React.Component {

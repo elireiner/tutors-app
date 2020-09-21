@@ -159,7 +159,6 @@ export default class TutorAddService extends React.Component {
                     }
                 </section>
                 <section className="tutor-sign-up-section">
-                    <p>hi</p>
                     <form
                         className="tutor-sign-up-form"
                         onSubmit={this.handleSubmit}

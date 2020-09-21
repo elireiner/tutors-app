@@ -1,7 +1,6 @@
 import React from 'react'
 import TutorsContext from '../../contexts/TutorsContext';
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types';
 import './TutorLink.css'
 
 export default class TutorLink extends React.Component {
