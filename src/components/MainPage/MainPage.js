@@ -37,7 +37,7 @@ export default class MainPage extends React.Component {
                         <ul className="tutors-list">
                             {this.props.currentTutors.map(tutor =>
                                 <TutorLink
-                                    key={tutor.id}
+                                    key={tutor.user_id}
                                     {...tutor}
                                 />
                             )}
