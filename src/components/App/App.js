@@ -77,7 +77,7 @@ export default class App extends React.Component {
     };
 
     componentDidUpdate(prevProps, prevState) {
-        console.log(this.state.searchText)
+        
         // check if filters updated:
         let filters = ["medium", "fee", "gender", "searchText"]
         let changed = filters.map(filter => {
@@ -86,7 +86,7 @@ export default class App extends React.Component {
             }
             return false
         }).filter(boolean => boolean === true)
-        //console.log(changed[0] === true)
+       
         //filter only if a filter changed
         if (changed[0] === true) {
 
@@ -121,7 +121,6 @@ export default class App extends React.Component {
                 currentTutors = currentTutors.filter(tutor => tutor.fee < 50)
             }
 
-            //console.log(currentTutors)
             this.setState({
                 currentTutors
             })
