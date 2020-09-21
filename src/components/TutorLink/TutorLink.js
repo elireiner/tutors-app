@@ -5,7 +5,7 @@ import './TutorLink.css';
 
 export default class TutorLink extends React.Component {
     static defaultProps = {
-        tutors: []
+        subjects: []
     };
 
     render() {

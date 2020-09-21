@@ -5,8 +5,10 @@ import Nav from '../Nav/Nav';
 import './MainPage.css';
 
 export default class MainPage extends React.Component {
-    //fix organize default props and constructor
-
+    static defaultProps = {
+        currentTutors: []
+    };
+    
     handleSelectChange = (e) => {
         this.props.setFilters(e)
     };

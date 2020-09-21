@@ -1,5 +1,4 @@
 import config from '../config';
-//import TokenService from './token-service.js'
 
 const UsersApiService = {
   getUsers() {
@@ -7,7 +6,6 @@ const UsersApiService = {
       headers: {
         "content-type": "application/json",
         Authorization: `Bearer ${config.API_KEY}`,
-        //'authorization': `basic ${TokenService.getAuthToken()}`,
       },
     })
       .then(res =>

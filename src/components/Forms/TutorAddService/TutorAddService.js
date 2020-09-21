@@ -59,8 +59,6 @@ export default class TutorAddService extends React.Component {
             const name = target.name;
 
             if (name === 'tutorSubjects') {
-                //let subjects = this.state.subjects.concat(value);
-
                 let subjects = [];
                 subjects.push(value);
                 this.setState({

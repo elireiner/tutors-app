@@ -145,7 +145,6 @@ export default class App extends React.Component {
             users: this.state.users,
             tutors: this.state.tutors,
             students: this.state.students,
-            //addUser: this.addUser,
             addTutor: this.addTutor,
             updateUser: this.updateUser,
             deleteNote: this.deleteNote,
