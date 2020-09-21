@@ -141,13 +141,6 @@ export default class TutorAddService extends React.Component {
                         lastMessage: message
                     })
                 })
-                .finally((res) => {
-                    //* move user back to main page
-                    //* setStates to false  except first after user left page
-                    //* either automatically or by clicking on the home link
-
-                    //
-                })
         }
 
 
