@@ -1,10 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import MainPage from '../MainPage/MainPage';
-import StudentSignUp from '../Forms/StudentSignUp/StudentSignUp';
-import TutorSignUp from '../Forms/TutorSignUp/TutorSignUp';
-import StudentLogIn from '../Forms/StudentLogIn/StudentLogIn';
-import TutorLogIn from '../Forms/TutorLogIn/TutorLogIn';
 import TutorAddService from '../Forms/TutorAddService/TutorAddService';
 import TutorsContext from '../../contexts/TutorsContext';
 import config from '../../config';
@@ -168,8 +164,6 @@ export default class App extends React.Component {
                         )}
                     />
 
-                    <Route path="/students/signup" component={StudentSignUp} />{" "}
-
                     <Route path="/tutors/add-service" component={TutorAddService} />{" "}
 
                     <Route
@@ -181,11 +175,6 @@ export default class App extends React.Component {
                             />
                         )}
                     />{" "}
-                    <Route path="/students/login" component={StudentLogIn} />{" "}
-
-                    <Route path="/tutors/signup" component={TutorSignUp} />{" "}
-
-                    <Route path="/tutors/login" component={TutorLogIn} />{" "}
 
                 </TutorsContext.Provider>{" "}
             </div>
